@@ -1,0 +1,12 @@
+1) TodoApp.js : manage the state of all the todos
+- TodoApp
+    -TodoForm
+    -TodoList
+        -TodoItem
+
+every todo need to have an : id, task & completed
+we write an initialTodos, and pass it in the useState(initialTodos)
+- we start by just rendering the <TodoList todos={todos} />
+we pass in todos that we have in useState
+
+2) make a TodoList.js component

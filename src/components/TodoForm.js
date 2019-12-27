@@ -10,9 +10,11 @@ function TodoForm({ addTodo }) {
       <form
         onSubmit={e => {
           e.preventDefault();
+          if (!value) return;
           addTodo(value);
           reset();
         }}
+        style={{ padding: "1rem" }}
       >
         <TextField
           value={value}

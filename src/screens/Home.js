@@ -24,7 +24,7 @@ function Home() {
   const classes = useStyles();
   return (
     <div>
-      <AppBar color="secondary" position="static" style={{ height: "10vh" }}>
+      <AppBar color="primary" position="static" style={{ height: "10vh" }}>
         <Toolbar>
           <Typography className={classes.title} color="inherit">
             Welcome to your Todo List
