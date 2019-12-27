@@ -33,4 +33,39 @@ in TodoApp, we add a addTodo :
     setTodos([...todos, { id: 4, task: newTodoText, completed: false }]);
   };
 
+4) we now gonna add a TodoItem in that component we'll add buttons for :
+delete, edit with the logic to toggle the edit form, a checkbox
+we need to set the key in each todo key={todo.id} and a completed props
+we move the ListItem from the TodoList to the TodoItem
+we import the checkbox from material Ui 
+tabIndex{-1} mean : 
+    When adding a positive value to the tabindex attribute (for example tabindex = "1", tabindex = "2") those elements are reachable by keyboard navigation and the order is defined by the value of the attribute.
+    When adding a negative value to tabindex (usually tabindex="-1") it means the element is not reachable by the keyboard navigation, but can be focused using focus function in JS
+    A tabindex="-1" value removes the element from the default navigation flow (i.e., a user cannot tab to it), but it allows it to receive programmatic focus, meaning focus can be set to it from a link or with scripting.** This can be very useful for elements that should not be tabbed to, but that may need to have focus set to them.
+we import the IconButton, and the DeleteIcon to go in the IconButton and the ListItemSecondaryAction that allow us to have some buttons or content on the other right side
+aria-label : c'est pour définir une légende non-visible pour les utilisateurs non voyant ou mal voyant qui utilise un screen-reader
+then we set a line-through if the task is completed, the buttons is not connected yet, this is our next task todo
+
+5) we now make the toggling and deletion work with hooks
+we're going to define a method up in the parent component TodoApp.js where we're managing the todo state
+so we call a removeTodo method and there is 2 function, filter and call setTodos with new todos array 
+    const removeTodo = todoId => {
+        // filter out removed todo
+        // call setTodos with new todos array
+    }
+to use that filter, for each todo in that array we're going to compare todoId to the todo.id
+so the ID on each todo not equal to the todoId, so that filter out the one todo we're trying to remove 
+we need to pass a props removeTodo in the TodoApp -> TodoList -> TodoItem 
+in the TodoItem we add a removeTodo(id) it's the id we passed in the TodoList id={todo.id}
+for now if we add multiple new todos because all of these have an ID of 4 we hard coded it in the TodoApp.js
+we need to add in an unique ID with uuid
+in the TodoApp we replace the id: 4 by id: uuid() (of course we need to import uuid)
+it works we can delete a single todo, each item have an unique id thanks to uuid 
+## the checkbox
+let's do the same for the checkbox, we want to update the todo when we click on it, let's define the method first
+toggleTodo : we gonna do the same thing
+for each Todo we gonna check if the todo.id === todoId we passed in and if it is
+we gonna return the existing ...todo and toggle the todo's completed status (completed = !todo.completed)
+otherwise we just return the todo as it is, then we setTodos with updatedTodos
+then we need to pass props toggleTodo={toggleTodo} to TodoApp -> TodoList -> TodoItem
 
