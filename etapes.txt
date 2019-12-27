@@ -10,3 +10,27 @@ we write an initialTodos, and pass it in the useState(initialTodos)
 we pass in todos that we have in useState
 
 2) make a TodoList.js component
+we first just want to render a list 
+  return (
+    <Paper>
+      <List>
+        {todos.map(todo => (
+          <>
+            <ListItem>
+              <ListItemText>{todo.task}</ListItemText>
+            </ListItem>
+            <Divider />
+          </>
+        ))}
+      </List>
+    </Paper>
+  );
+
+3) we make a TodoForm.js now
+we need to make our own custom hook in useInputState.js, to add a reset
+in TodoApp, we add a addTodo :
+  const addTodo = newTodoText => {
+    setTodos([...todos, { id: 4, task: newTodoText, completed: false }]);
+  };
+
+

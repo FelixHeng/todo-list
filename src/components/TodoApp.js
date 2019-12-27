@@ -12,10 +12,13 @@ function TodoApp() {
     { id: 3, task: "Learn chinese", completed: false }
   ];
   const [todos, setTodos] = useState(initialTodos);
+  const addTodo = newTodoText => {
+    setTodos([...todos, { id: 4, task: newTodoText, completed: false }]);
+  };
   // const { todos, addTodo } = useTodoState(initialTodos);
   return (
     <Paper>
-      {/* <TodoForm addTodo={addTodo} /> */}
+      <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} />
     </Paper>
   );
