@@ -31,11 +31,22 @@ function TodoApp() {
     setTodos(updatedTodos);
   };
 
-  // const { todos, addTodo } = useTodoState(initialTodos);
+  const editTodo = (todoId, newTask) => {
+    const updatedTodos = todos.map(todo =>
+      todo.id === todoId ? { ...todo, task: newTask } : todo
+    );
+    setTodos(updatedTodos);
+  };
+
   return (
     <Paper>
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+      <TodoList
+        todos={todos}
+        removeTodo={removeTodo}
+        toggleTodo={toggleTodo}
+        editTodo={editTodo}
+      />
     </Paper>
   );
   setTodos();

@@ -3,11 +3,11 @@ import TodoItem from "./TodoItem";
 
 import { Paper, List, Divider } from "@material-ui/core";
 
-function TodoList({ todos, removeTodo, toggleTodo }) {
+function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
   return (
     <Paper>
       <List>
-        {todos.map(todo => (
+        {todos.map((todo, i) => (
           <>
             <TodoItem
               id={todo.id}
@@ -16,8 +16,10 @@ function TodoList({ todos, removeTodo, toggleTodo }) {
               completed={todo.completed}
               removeTodo={removeTodo}
               toggleTodo={toggleTodo}
+              editTodo={editTodo}
             />
-            <Divider />
+            {i < todos.length - 1 && <Divider />}
+            {/* another option: {i < todos.length - 1 ? <Divider /> : ""} */}
           </>
         ))}
       </List>

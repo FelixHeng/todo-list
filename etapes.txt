@@ -69,3 +69,35 @@ we gonna return the existing ...todo and toggle the todo's completed status (com
 otherwise we just return the todo as it is, then we setTodos with updatedTodos
 then we need to pass props toggleTodo={toggleTodo} to TodoApp -> TodoList -> TodoItem
 
+6) we now work with the Editform
+1st : we need to toggle the editform true to false and false to true
+  we create a new hooks to toggle the state, and import it in the TodoItem 
+  const [isEditing, toggle] = useToggleState(false); and pass a props in the edit button
+  we make a ternary to show the editingform OR the Todo with the checkbox, remove and editing button  
+2nd : we create a new component EditTodoForm.js, to have a textField to edit and we put the component in the TodoItem when editing is True.
+  but nothing happens when we hit enter, so let's make our input works
+3rd : we have a hooks useInputState which can help us to controle the textField in the EditTodoForm
+  in the EditTodoForm we can import the useInputState hooks, that return a value, handleChange and reset 
+  now we need to make the method is going to update the Todo when we submit the textField
+  so in our TodoApp.js we'll define a new method we called it editTodo 
+  we're going to keep the same method as the toggleTodo except once we find the todoId we want to set the task to a newTask
+  then we just need to pass this props in the TodoApp -> TodoList -> TodoItem
+  and finally in the EditTodoForm we have a props being passed called {editTodo} and we need to call it when we hit "enter" when we submit this
+  we have 3 solutions to do that :
+    1) we can add a button that we click to save
+    2) we can add an event listener and if we press "enter" it will save
+    3) we can add a form around the whole thing, and submit it by pressing "enter" key
+so let's make a form, we pass in and id, and the value of the TextField
+to access to the id we go in the TodoItem and pass it in the EditTodoForm
+to show the previews task we need to pass it in the initialvalue in the useInputState(task), don't forget to pass it as a props in the EditTodoForm
+we have another issue now, when we hit enter, the form does submit and the reset happens, the todo maybe updated but we're seeing this form so how to hide this form when the toggle state is actually happening in the parent component TodoItem
+we can just pass toggle in the TodoItem as a props and grab the props and pass it in the EditTodoForm
+in the editform we can add an autofocus, so when we click the edit button we automatically get into the text field 
+
+
+
+
+
+
+
+
