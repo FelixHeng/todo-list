@@ -3,8 +3,10 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Home from "./screens/Home";
 import Today from "./screens/Today";
-import SevenDays from "./screens/SevenDays";
+import Tomorrow from "./screens/Tomorrow";
 import Important from "./screens/Important";
+import SevenDays from "./screens/SevenDays";
+import Someday from "./screens/Someday";
 
 import "./App.css";
 
@@ -14,8 +16,10 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/today" component={Today} />
-        <Route path="/seven" component={SevenDays} />
+        <Route path="/tomorrow" component={Tomorrow} />
         <Route path="/important" component={Important} />
+        <Route path="/seven" component={SevenDays} />
+        <Route path="/someday" component={Someday} />
       </Switch>
     </BrowserRouter>
   );

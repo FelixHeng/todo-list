@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, AppBar, Toolbar, Typography } from "@material-ui/core";
+import { Button, AppBar, Toolbar, Typography } from "@material-ui/core/";
 
-function SevendDays() {
+function Tomorrow() {
   return (
     <div>
       <AppBar color="primary" position="static" style={{ height: "64px" }}>
@@ -10,7 +10,7 @@ function SevendDays() {
           <Typography color="inherit">Welcome to your Todo List</Typography>
         </Toolbar>
       </AppBar>
-      TODO IN THE NEXT SEVEN DAYS
+      THIS IS FOR TOMORROW
       <Button component={Link} to={"/"}>
         Go back to Home
       </Button>
@@ -18,4 +18,4 @@ function SevendDays() {
   );
 }
 
-export default SevendDays;
+export default Tomorrow;

@@ -10,6 +10,7 @@ function Important() {
           <Typography color="inherit">Welcome to your Todo List</Typography>
         </Toolbar>
       </AppBar>
+      IMPORTANT TO DO
       <Button component={Link} to={"/"}>
         Go back to Home
       </Button>
