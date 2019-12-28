@@ -26,6 +26,18 @@ function TodoForm({ addTodo }) {
             onChange={handleChange}
             label="Add new todo"
           />
+          <Button
+            onClick={() => {
+              if (!value) return;
+              addTodo(value);
+              reset();
+              toggle();
+            }}
+            variant="contained"
+            color="secondary"
+          >
+            Add Task
+          </Button>
           <Button onClick={toggle}>Cancel</Button>
         </form>
       ) : (
