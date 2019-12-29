@@ -63,7 +63,7 @@ function Home() {
           item
           xs={12}
           md={8}
-          lg={4}
+          lg={5}
           justify="center"
           style={{ marginTop: "2rem" }}
         >

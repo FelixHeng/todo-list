@@ -2,14 +2,20 @@ import React from "react";
 import useInputState from "../hooks/useInputState";
 import useToggleState from "../hooks/useToggleState";
 
-import { Paper, TextField, Button } from "@material-ui/core";
+import {
+  Paper,
+  TextField,
+  Button,
+  ListItemSecondaryAction,
+  ListItem
+} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
 function TodoForm({ addTodo }) {
   const [value, handleChange, reset] = useInputState("");
   const [isAdding, toggle] = useToggleState(false);
   return (
-    <Paper>
+    <ListItem>
       {isAdding ? (
         <form
           onSubmit={e => {
@@ -26,19 +32,27 @@ function TodoForm({ addTodo }) {
             onChange={handleChange}
             label="Add new todo"
           />
-          <Button
-            onClick={() => {
-              if (!value) return;
-              addTodo(value);
-              reset();
-              toggle();
-            }}
-            variant="contained"
-            color="secondary"
-          >
-            Add Task
-          </Button>
-          <Button onClick={toggle}>Cancel</Button>
+          <TextField
+            id="date"
+            label="Schedule"
+            type="date"
+            defaultValue="2020-01-01"
+          />
+          <ListItemSecondaryAction>
+            <Button
+              onClick={() => {
+                if (!value) return;
+                addTodo(value);
+                reset();
+                toggle();
+              }}
+              variant="contained"
+              color="secondary"
+            >
+              Add Task
+            </Button>
+            <Button onClick={toggle}>Cancel</Button>
+          </ListItemSecondaryAction>
         </form>
       ) : (
         <Button onClick={toggle} style={{ padding: "1rem" }}>
@@ -46,7 +60,7 @@ function TodoForm({ addTodo }) {
           Add task
         </Button>
       )}
-    </Paper>
+    </ListItem>
   );
 }
 
