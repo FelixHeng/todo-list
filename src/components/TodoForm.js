@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import useInputState from "../hooks/useInputState";
 import useToggleState from "../hooks/useToggleState";
+
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  DatePicker,
+  TimePicker,
+  DateTimePicker
+} from "@material-ui/pickers";
 
 import {
   Paper,
@@ -14,6 +22,15 @@ import AddIcon from "@material-ui/icons/Add";
 function TodoForm({ addTodo }) {
   const [value, handleChange, reset] = useInputState("");
   const [isAdding, toggle] = useToggleState(false);
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const date = selectedDate.toString();
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addTodo(value, date);
+    reset();
+    toggle();
+  };
   return (
     <ListItem>
       {isAdding ? (
@@ -21,7 +38,7 @@ function TodoForm({ addTodo }) {
           onSubmit={e => {
             e.preventDefault();
             if (!value) return;
-            addTodo(value);
+            addTodo(value, date);
             reset();
             toggle();
           }}
@@ -32,20 +49,16 @@ function TodoForm({ addTodo }) {
             onChange={handleChange}
             label="Add new todo"
           />
-          <TextField
-            id="date"
-            label="Schedule"
-            type="date"
-            defaultValue="2020-01-01"
-          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <div className="pickers">
+              <DatePicker value={selectedDate} onChange={handleDateChange} />
+              <TimePicker value={selectedDate} onChange={handleDateChange} />
+              {/* <DateTimePicker value={selectedDate} onChange={handleDateChange} /> */}
+            </div>
+          </MuiPickersUtilsProvider>
           <ListItemSecondaryAction>
             <Button
-              onClick={() => {
-                if (!value) return;
-                addTodo(value);
-                reset();
-                toggle();
-              }}
+              onClick={handleSubmit}
               variant="contained"
               color="secondary"
             >

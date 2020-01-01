@@ -8,13 +8,16 @@ import uuid from "uuid/v4";
 
 function TodoApp() {
   const initialTodos = [
-    { id: 1, task: "Wash car", completed: false },
-    { id: 2, task: "Buy a New pc", completed: false },
-    { id: 3, task: "Learn chinese", completed: false }
+    { id: 1, task: "Wash car", date: "yesterday,", completed: false },
+    { id: 2, task: "Buy a New pc", date: "today", completed: false },
+    { id: 3, task: "Learn chinese", date: "tomorrow", completed: false }
   ];
   const [todos, setTodos] = useState(initialTodos);
-  const addTodo = newTodoText => {
-    setTodos([...todos, { id: uuid(), task: newTodoText, completed: false }]);
+  const addTodo = (newTodoText, newDate) => {
+    setTodos([
+      ...todos,
+      { id: uuid(), task: newTodoText, date: newDate, completed: false }
+    ]);
   };
 
   const removeTodo = todoId => {
@@ -31,9 +34,9 @@ function TodoApp() {
     setTodos(updatedTodos);
   };
 
-  const editTodo = (todoId, newTask) => {
+  const editTodo = (todoId, newTask, newDate) => {
     const updatedTodos = todos.map(todo =>
-      todo.id === todoId ? { ...todo, task: newTask } : todo
+      todo.id === todoId ? { ...todo, task: newTask, date: newDate } : todo
     );
     setTodos(updatedTodos);
   };
