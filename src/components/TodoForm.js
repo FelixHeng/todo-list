@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import useInputState from "../hooks/useInputState";
 import useToggleState from "../hooks/useToggleState";
 
+//npm install date-fns@next @date-io/date-fns
 import DateFnsUtils from "@date-io/date-fns";
+import { format } from "date-fns";
 import {
   MuiPickersUtilsProvider,
   DatePicker,
@@ -23,7 +25,14 @@ function TodoForm({ addTodo }) {
   const [value, handleChange, reset] = useInputState("");
   const [isAdding, toggle] = useToggleState(false);
   const [selectedDate, handleDateChange] = useState(new Date());
-  const date = selectedDate.toString();
+  const date = selectedDate.toLocaleString("fr-FR", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) return;
