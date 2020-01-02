@@ -12,7 +12,16 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
-function Todo({ id, task, date, completed, removeTodo, toggleTodo, editTodo }) {
+function Todo({
+  id,
+  task,
+  category,
+  date,
+  completed,
+  removeTodo,
+  toggleTodo,
+  editTodo
+}) {
   const [isEditing, toggle] = useToggleState(false);
   return (
     <ListItem style={{ height: "64px" }}>
@@ -21,6 +30,7 @@ function Todo({ id, task, date, completed, removeTodo, toggleTodo, editTodo }) {
           editTodo={editTodo}
           id={id}
           task={task}
+          category={category}
           date={date}
           toggleEditForm={toggle}
         />
@@ -35,6 +45,7 @@ function Todo({ id, task, date, completed, removeTodo, toggleTodo, editTodo }) {
             style={{ textDecoration: completed ? "line-through" : "none" }}
           >
             <div>{task}</div>
+            <div>{category}</div>
             <div>{date}</div>
           </ListItemText>
           <ListItemSecondaryAction>

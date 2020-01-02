@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useInputState from "../hooks/useInputState";
 import useToggleState from "../hooks/useToggleState";
-
+import Category from "./Category";
 //npm install date-fns@next @date-io/date-fns
 import DateFnsUtils from "@date-io/date-fns";
 import { format } from "date-fns";
@@ -53,11 +53,12 @@ function TodoForm({ addTodo }) {
           }}
           style={{ padding: "1rem" }}
         >
-          <TextField
+          <Category value={value} onChange={handleChange} />
+          {/* <TextField
             value={value}
             onChange={handleChange}
             label="Add new todo"
-          />
+          /> */}
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <div className="pickers">
               <DatePicker value={selectedDate} onChange={handleDateChange} />

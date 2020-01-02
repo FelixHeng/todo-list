@@ -12,6 +12,7 @@ function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
             <TodoItem
               id={todo.id}
               task={todo.task}
+              category={todo.category}
               date={todo.date}
               key={todo.id}
               completed={todo.completed}
