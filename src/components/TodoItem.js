@@ -23,6 +23,8 @@ function Todo({
   editTodo
 }) {
   const [isEditing, toggle] = useToggleState(false);
+  console.log("cateeee", { category });
+  console.log("daaate", { date });
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
@@ -44,8 +46,8 @@ function Todo({
           <ListItemText
             style={{ textDecoration: completed ? "line-through" : "none" }}
           >
-            <div>{task}</div>
             <div>{category}</div>
+            <div>{task}</div>
             <div>{date}</div>
           </ListItemText>
           <ListItemSecondaryAction>

@@ -5,8 +5,16 @@ export default initialTodos => {
   const [todos, setTodos] = useState("");
   return {
     todos,
-    addTodo: newTodoText => {
-      setTodos([...todos, { id: uuid(), task: newTodoText, completed: false }]);
+    addTodo: (newTodoText, newCategory) => {
+      setTodos([
+        ...todos,
+        {
+          id: uuid(),
+          task: newTodoText,
+          category: newCategory,
+          completed: false
+        }
+      ]);
     }
   };
 };

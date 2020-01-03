@@ -22,6 +22,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 
 function TodoForm({ addTodo }) {
+  const [category, setCategory] = useState("");
   const [value, handleChange, reset] = useInputState("");
   const [isAdding, toggle] = useToggleState(false);
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -36,24 +37,31 @@ function TodoForm({ addTodo }) {
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) return;
-    addTodo(value, date);
+    addTodo(value, category, date);
     reset();
     toggle();
+  };
+  const handleChangeCat = value => {
+    setCategory(value);
   };
   return (
     <ListItem>
       {isAdding ? (
         <form
-          onSubmit={e => {
-            e.preventDefault();
-            if (!value) return;
-            addTodo(value, date);
-            reset();
-            toggle();
-          }}
+          // onSubmit={e => {
+          //   e.preventDefault();
+          //   if (!value) return;
+          //   addTodo(value, date, category);
+          //   reset();
+          //   toggle();
+          // }}
           style={{ padding: "1rem" }}
         >
-          <Category value={value} onChange={handleChange} />
+          <Category
+            value={value}
+            valueChange={handleChange}
+            setCategory={handleChangeCat}
+          />
           {/* <TextField
             value={value}
             onChange={handleChange}
@@ -63,7 +71,10 @@ function TodoForm({ addTodo }) {
             <div className="pickers">
               <DatePicker value={selectedDate} onChange={handleDateChange} />
               <TimePicker value={selectedDate} onChange={handleDateChange} />
-              {/* <DateTimePicker value={selectedDate} onChange={handleDateChange} /> */}
+              {/* <DateTimePicker
+                value={selectedDate}
+                onChange={handleDateChange}
+              /> */}
             </div>
           </MuiPickersUtilsProvider>
           <ListItemSecondaryAction>

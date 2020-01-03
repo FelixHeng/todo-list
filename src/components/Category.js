@@ -50,32 +50,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Category({ value, onChange }) {
+export default function Category({ value, valueChange, setCategory }) {
   const classes = useStyles();
-  const [state, setState] = useState("");
+  const [cat, setCat] = useState("");
   const handleChange = event => {
-    setState(event.target.value);
+    setCategory(event.target.value);
+    setCat(event.target.value);
   };
   return (
     <div>
       <FormControl className={classes.margin}>
         <InputLabel>Todo</InputLabel>
-        <BootstrapInput value={value} onChange={onChange} />
+        <BootstrapInput value={value} onChange={valueChange} />
       </FormControl>
       <FormControl className={classes.margin}>
         <InputLabel>Category</InputLabel>
         <NativeSelect
-          value={state}
+          value={cat}
           onChange={handleChange}
           input={<BootstrapInput />}
         >
-          <option value="" />
-          <option value={10}>Work</option>
-          <option value={20}>Personal</option>
-          <option value={30}>Social</option>
-          <option value={40}>Reading</option>
-          <option value={50}>Life Goals</option>
-          <option value={60}>Others</option>
+          <option value="">Category</option>
+          <option value={"Work"}>Work</option>
+          <option value={"Personal"}>Personal</option>
+          <option value={"Social"}>Social</option>
+          <option value={"Reading"}>Reading</option>
+          <option value={"Life Goals"}>Life Goals</option>
+          <option value={"Others"}>Others</option>
         </NativeSelect>
       </FormControl>
     </div>

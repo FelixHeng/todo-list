@@ -8,27 +8,27 @@ import uuid from "uuid/v4";
 
 function TodoApp() {
   const initialTodos = [
-    {
-      id: 1,
-      task: "Wash car",
-      category: "social",
-      date: "yesterday,",
-      completed: false
-    },
-    {
-      id: 2,
-      task: "Buy a New pc",
-      category: "personal",
-      date: "today",
-      completed: false
-    },
-    {
-      id: 3,
-      task: "Learn chinese",
-      category: "reading",
-      date: "tomorrow",
-      completed: false
-    }
+    // {
+    //   id: 1,
+    //   task: "Wash car",
+    //   category: "social",
+    //   date: "yesterday,",
+    //   completed: false
+    // },
+    // {
+    //   id: 2,
+    //   task: "Buy a New pc",
+    //   category: "personal",
+    //   date: "today",
+    //   completed: false
+    // },
+    // {
+    //   id: 3,
+    //   task: "Learn chinese",
+    //   category: "reading",
+    //   date: "tomorrow",
+    //   completed: false
+    // }
   ];
   const [todos, setTodos] = useState(initialTodos);
   const addTodo = (newTodoText, newCategory, newDate) => {
@@ -36,8 +36,8 @@ function TodoApp() {
       ...todos,
       {
         id: uuid(),
-        task: newTodoText,
         category: newCategory,
+        task: newTodoText,
         date: newDate,
         completed: false
       }
