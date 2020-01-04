@@ -45,9 +45,7 @@ function TodoApp() {
   };
 
   const removeTodo = todoId => {
-    // filter out removed todo
     const updatedTodos = todos.filter(todo => todo.id !== todoId);
-    // call setTodos with new todos array
     setTodos(updatedTodos);
   };
 

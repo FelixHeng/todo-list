@@ -9,8 +9,7 @@ import {
   IconButton,
   ListItemSecondaryAction,
   makeStyles,
-  Button,
-  Typography
+  Button
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -31,9 +30,9 @@ function Todo({
   const socialColors = "#1ABC9C";
   const readingColors = "#873600";
   const lifeColors = "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)";
-  const othersColors = "#F1C40F";
+  const othersColors = "#717D7E";
 
-  let catColors;
+  let catColors = othersColors;
   if (category === "Work") {
     catColors = workColors;
   } else if (category === "Personal") {
@@ -62,8 +61,8 @@ function Todo({
     }
   });
   const classes = useStyles();
-  // console.log("cateeee", { category });
-  // console.log("daaate", { date });
+  // console.log("cateeee", category);
+  // console.log("daaate", date);
   return (
     <ListItem>
       {isEditing ? (
