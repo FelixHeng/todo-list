@@ -7,6 +7,9 @@ import Tomorrow from "./screens/Tomorrow";
 import Important from "./screens/Important";
 import SevenDays from "./screens/SevenDays";
 import Someday from "./screens/Someday";
+import Login from "./screens/Login";
+import Signup from "./screens/Signup";
+import Profile from "./screens/Profile";
 
 import "./App.css";
 
@@ -20,6 +23,9 @@ function App() {
         <Route path="/important" component={Important} />
         <Route path="/seven" component={SevenDays} />
         <Route path="/someday" component={Someday} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/profile" component={Profile} />
       </Switch>
     </BrowserRouter>
   );

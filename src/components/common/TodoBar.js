@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import LeftDrawer from "./LeftDrawer";
 
@@ -40,7 +41,12 @@ export default function TodoBar() {
           <Typography variant="h6" className={classes.title}>
             Welcome
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button component={Link} to={"/login"} color="inherit">
+            Login
+          </Button>
+          <Button component={Link} to={"/signup"} color="inherit">
+            Sign up
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
