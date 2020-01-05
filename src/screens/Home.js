@@ -11,10 +11,17 @@ import {
 } from "@material-ui/core";
 import TodoApp from "../components/TodoApp";
 import { makeStyles } from "@material-ui/styles";
+import { amber } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(theme => ({
-  title: {
+  menulist: {
     variant: "h6"
+  },
+  title: {
+    textAlign: "center",
+    color: amber[500],
+    fontWeight: 1000,
+    fontSize: 100
   }
 }));
 
@@ -22,40 +29,46 @@ function Home() {
   const classes = useStyles();
   return (
     <div>
-      <AppBar color="primary" position="static" style={{ height: "10vh" }}>
+      {/* <AppBar color="primary" position="static" style={{ height: "10vh" }}>
         <Toolbar>
           <Typography variant="h5" color="inherit">
             Welcome to your Todo List
           </Typography>
         </Toolbar>
-      </AppBar>
-
+      </AppBar> */}
+      <Grid alignItems="center" justify="center">
+        <Typography className={classes.title}>Todo</Typography>
+      </Grid>
       <Grid container>
         <Grid item xs={12} md={8} lg={4}>
           <MenuList
             style={{
-              paddingTop: "1.5rem",
-              height: "85.8vh",
+              margin: "1.2rem 0 0 1.2rem",
+              padding: "1.5rem 0 1.5rem 1.5rem",
+              height: "auto",
               // for responsive width ?
               // https://material-ui.com/components/use-media-query/#migrating-from-withwidth
-              width: "40vh",
-              backgroundColor: "pink"
+              width: "15vw",
+              backgroundColor: "pink",
+              borderRadius: "10%"
             }}
           >
             <MenuItem component={Link} to={"/today"}>
-              <Typography className={classes.title}>Today</Typography>
+              <Typography className={classes.menulist}>Today</Typography>
             </MenuItem>
             <MenuItem component={Link} to={"/tomorrow"}>
-              <Typography className={classes.title}>Tomorrow</Typography>
+              <Typography className={classes.menulist}>Tomorrow</Typography>
             </MenuItem>
             <MenuItem component={Link} to={"/important"}>
-              <Typography className={classes.title}>Important</Typography>
+              <Typography className={classes.menulist}>Important</Typography>
             </MenuItem>
             <MenuItem component={Link} to={"/seven"}>
-              <Typography className={classes.title}>Next Seven days</Typography>
+              <Typography className={classes.menulist}>
+                Next Seven days
+              </Typography>
             </MenuItem>
             <MenuItem component={Link} to={"/someday"}>
-              <Typography className={classes.title}>Someday</Typography>
+              <Typography className={classes.menulist}>Someday</Typography>
             </MenuItem>
           </MenuList>
         </Grid>

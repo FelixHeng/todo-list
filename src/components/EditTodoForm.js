@@ -3,13 +3,13 @@ import useInputState from "../hooks/useInputState";
 
 import { TextField } from "@material-ui/core";
 
-function EditTodoForm({ editTodo, id, task, toggleEditForm }) {
+function EditTodoForm({ editTodo, id, task, category, toggleEditForm }) {
   const [value, handleChange, reset] = useInputState(task);
   return (
     <form
       onSubmit={e => {
         e.preventDefault();
-        editTodo(id, value);
+        editTodo(id, value, category);
         reset();
         toggleEditForm();
       }}
