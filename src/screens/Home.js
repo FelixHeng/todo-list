@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TodoBar from "../components/common/TodoBar";
 
 import {
-  AppBar,
   Toolbar,
   Typography,
   Grid,
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     textAlign: "center",
-    color: amber[500],
+    color: "pink",
     fontWeight: 1000,
     fontSize: 100
   }
@@ -36,11 +36,12 @@ function Home() {
           </Typography>
         </Toolbar>
       </AppBar> */}
-      <Grid alignItems="center" justify="center">
+      <TodoBar />
+      <Grid container alignItems="center" justify="center">
         <Typography className={classes.title}>Todo</Typography>
       </Grid>
       <Grid container>
-        <Grid item xs={12} md={8} lg={4}>
+        {/* <Grid item xs={12} md={8} lg={4}>
           <MenuList
             style={{
               margin: "1.2rem 0 0 1.2rem",
@@ -71,14 +72,13 @@ function Home() {
               <Typography className={classes.menulist}>Someday</Typography>
             </MenuItem>
           </MenuList>
-        </Grid>
+        </Grid> */}
         <Grid
           item
           xs={12}
           md={8}
           lg={5}
-          justify="center"
-          style={{ marginTop: "2rem" }}
+          style={{ marginTop: "2rem", marginLeft: "28rem" }}
         >
           <TodoApp />
         </Grid>
