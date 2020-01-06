@@ -7,7 +7,7 @@ function Login() {
     <div>
       <Grid container alignItems="center" style={{ height: "100%" }}>
         <Grid item xs={12}>
-          <Paper elevation={4} style={{ margin: "10rem 20rem 20rem 20rem" }}>
+          <Paper elevation={4} style={{ margin: "10rem 20rem 0 20rem" }}>
             <Grid
               container
               alignItems="center"
