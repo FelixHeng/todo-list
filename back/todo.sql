@@ -1,0 +1,33 @@
+CREATE TABLE users
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(90) UNIQUE,
+    password VARCHAR(90),
+    name VARCHAR(90),
+    lastname VARCHAR(90)
+);
+
+CREATE TABLE categories
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(90) UNIQUE
+);
+
+CREATE TABLE todo
+(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    task VARCHAR(100) NOT NULL,
+    todo_at DATETIME NOT NULL,
+    users_id INT,
+    categories_id INT 
+);
+
+ALTER TABLE todo
+ADD CONSTRAINT fk_users_id
+FOREIGN KEY (users_id)
+REFERENCES users(id)
+ON DELETE RESTRICT ON UPDATE RESTRICT,
+ADD CONSTRAINT fk_categories_id
+FOREIGN KEY (categories_id)
+REFERENCES categories(id)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
