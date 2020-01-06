@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Grid, Paper, TextField } from "@material-ui/core";
 
 function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
   return (
     <div>
       <Grid container alignItems="center" style={{ height: "100%" }}>
