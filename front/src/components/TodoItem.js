@@ -9,7 +9,8 @@ import {
   IconButton,
   ListItemSecondaryAction,
   makeStyles,
-  Button
+  Button,
+  Box
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -86,18 +87,24 @@ function Todo({
               textDecoration: completed ? "line-through" : "none"
             }}
           >
-            <Button className={classes.category}>{category}</Button>
+            <Box style={{ display: "flex" }}>
+              <Box flexGrow={1}>
+                <Button className={classes.category}>{category}</Button>
+              </Box>
+              <Box display="flex" justifyContent="flex-end">
+                <IconButton aria-label="Edit" onClick={toggle}>
+                  <EditIcon />
+                </IconButton>
+                <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
+            </Box>
             <div style={{ width: "80%" }}>{task}</div>
             <div>{date}</div>
+            {/* <ListItemSecondaryAction> */}
+            {/* </ListItemSecondaryAction> */}
           </ListItemText>
-          <ListItemSecondaryAction>
-            <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton aria-label="Edit" onClick={toggle}>
-              <EditIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
         </>
       )}
     </ListItem>

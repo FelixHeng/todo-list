@@ -40,7 +40,7 @@ function Home() {
       <Grid container alignItems="center" justify="center">
         <Typography className={classes.title}>Todo</Typography>
       </Grid>
-      <Grid container>
+      <Grid container justify="center">
         {/* <Grid item xs={12} md={8} lg={4}>
           <MenuList
             style={{
@@ -75,10 +75,10 @@ function Home() {
         </Grid> */}
         <Grid
           item
-          xs={12}
+          xs={10}
           md={8}
           lg={5}
-          style={{ marginTop: "2rem", marginLeft: "28rem" }}
+          style={{ marginTop: "2rem", alignContent: "center" }}
         >
           <TodoApp />
         </Grid>

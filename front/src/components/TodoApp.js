@@ -3,7 +3,7 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import useTodoState from "../hooks/useTodoState";
 
-import { Paper } from "@material-ui/core";
+import { Paper, Divider } from "@material-ui/core";
 import uuid from "uuid/v4";
 
 function TodoApp() {
