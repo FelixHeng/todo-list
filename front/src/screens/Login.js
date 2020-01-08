@@ -63,7 +63,7 @@ function Login() {
               </form>
               <br />
               <br />
-              <Box style={{ textAlign: "center", color: "#99A3A4" }}>
+              <Box style={{ textAlign: "center", color: "#717D7E" }}>
                 don't have an account yet ?
                 <br />
                 <Link to={"/signup"}>
