@@ -22,6 +22,10 @@ const useStyles = makeStyles({
   },
   fullList: {
     width: "auto"
+  },
+  paper: {
+    backgroundColor: "#081b2b",
+    color: "white"
   }
 });
 
@@ -109,7 +113,11 @@ export default function TemporaryDrawer() {
       {/* <Button onClick={toggleDrawer('right', true)}>Open Right</Button>
           <Button onClick={toggleDrawer('top', true)}>Open Top</Button>
           <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button> */}
-      <Drawer open={state.left} onClose={toggleDrawer("left", false)}>
+      <Drawer
+        classes={{ paper: classes.paper }}
+        open={state.left}
+        onClose={toggleDrawer("left", false)}
+      >
         {sideList("left")}
       </Drawer>
       {/* <Drawer anchor="top" open={state.top} onClose={toggleDrawer('top', false)}>

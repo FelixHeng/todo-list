@@ -19,9 +19,18 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     textAlign: "center",
-    color: "pink",
-    fontWeight: 1000,
-    fontSize: 100
+    color: "#081b2b",
+    fontWeight: 500,
+    fontSize: 100,
+    // fontFamily: "Poiret One",
+    fontFamily: "Pacifico"
+  },
+  quote: {
+    textAlign: "center",
+    color: "#081b2b",
+    fontWeight: 300,
+    fontSize: 30,
+    fontFamily: "Poiret One"
   }
 }));
 
@@ -37,8 +46,16 @@ function Home() {
         </Toolbar>
       </AppBar> */}
       <TodoBar />
-      <Grid container alignItems="center" justify="center">
+      <Grid
+        container
+        alignItems="center"
+        justify="center"
+        style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}
+      >
         <Typography className={classes.title}>Todo</Typography>
+        <Typography className={classes.quote}>
+          "The man who moves a mountain begins by carrying away small stones..."
+        </Typography>
       </Grid>
       <Grid container justify="center">
         {/* <Grid item xs={12} md={8} lg={4}>

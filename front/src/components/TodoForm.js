@@ -84,9 +84,12 @@ function TodoForm({ addTodo }) {
         <Grid container justify="center">
           <Button
             onClick={toggle}
-            style={{ padding: "1rem", fontSize: "1rem" }}
+            style={{
+              fontSize: "1rem",
+              padding: "1rem"
+            }}
           >
-            <AddIcon style={{ padding: "1rem" }} />
+            <AddIcon />
             Add task
           </Button>
         </Grid>
