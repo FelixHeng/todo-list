@@ -5,7 +5,7 @@ import { Paper, List, Divider, Box } from "@material-ui/core";
 
 function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
   return (
-    <Box style={{ marginBottom: "5rem" }}>
+    <Box style={{ marginBottom: "7rem" }}>
       <List>
         {todos.map((todo, i) => (
           <>
