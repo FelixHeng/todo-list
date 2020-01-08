@@ -1,12 +1,12 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-import { Paper, List, Divider } from "@material-ui/core";
+import { Paper, List, Divider, Box } from "@material-ui/core";
 
 function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
   return (
-    <Paper>
-      <List style={{ marginBottom: "2rem" }}>
+    <Box style={{ marginBottom: "5rem" }}>
+      <List>
         {todos.map((todo, i) => (
           <>
             <TodoItem
@@ -25,7 +25,7 @@ function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
           </>
         ))}
       </List>
-    </Paper>
+    </Box>
   );
 }
 
