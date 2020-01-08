@@ -28,7 +28,7 @@ export default function TodoBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: "#081b2b" }}>
+      <AppBar position="static" style={{ backgroundColor: "#0D5FAD" }}>
         <Toolbar>
           {/* <IconButton
             edge="start"

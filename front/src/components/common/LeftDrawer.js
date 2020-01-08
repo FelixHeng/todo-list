@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     width: "auto"
   },
   paper: {
-    backgroundColor: "#081b2b",
+    backgroundColor: "#0D5FAD",
     color: "white"
   }
 });
