@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     textAlign: "center",
     color: "#0D5FAD",
-    fontWeight: "bold",
+    fontWeight: 200,
     fontSize: 120,
     // fontFamily: "Poiret One",
     fontFamily: "Pacifico"
@@ -28,8 +28,8 @@ const useStyles = makeStyles(theme => ({
   quote: {
     textAlign: "center",
     color: "#0D5FAD",
-    fontWeight: "bold",
-    fontSize: 30,
+    fontWeight: 600,
+    fontSize: 25,
     fontFamily: "Poiret One"
   }
 }));
