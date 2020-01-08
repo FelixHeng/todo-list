@@ -77,11 +77,6 @@ function Todo({
         />
       ) : (
         <>
-          <Checkbox
-            tabIndex={-1}
-            checked={completed}
-            onClick={() => toggleTodo(id)}
-          />
           <ListItemText
             style={{
               textDecoration: completed ? "line-through" : "none"
@@ -89,6 +84,11 @@ function Todo({
           >
             <Box style={{ display: "flex" }}>
               <Box flexGrow={1}>
+                <Checkbox
+                  tabIndex={-1}
+                  checked={completed}
+                  onClick={() => toggleTodo(id)}
+                />
                 <Button className={classes.category}>{category}</Button>
               </Box>
               <Box display="flex" justifyContent="flex-end">
@@ -100,8 +100,19 @@ function Todo({
                 </IconButton>
               </Box>
             </Box>
-            <div style={{ width: "80%" }}>{task}</div>
-            <div>{date}</div>
+            <div style={{ marginLeft: "0.7rem", width: "80%" }}>{task}</div>
+            <Box
+              style={{
+                marginLeft: "0.7rem",
+                marginTop: "0.3rem",
+                width: "45%",
+                padding: "0.3rem"
+              }}
+              border={1}
+              borderRadius={10}
+            >
+              {date}
+            </Box>
             {/* <ListItemSecondaryAction> */}
             {/* </ListItemSecondaryAction> */}
           </ListItemText>
