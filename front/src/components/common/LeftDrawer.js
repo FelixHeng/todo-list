@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
+import { Box } from "@material-ui/core";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -13,6 +13,14 @@ import MailIcon from "@material-ui/icons/Mail";
 
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
+import Filter7OutlinedIcon from "@material-ui/icons/Filter7Outlined";
+import EventAvailableOutlinedIcon from "@material-ui/icons/EventAvailableOutlined";
+import DateRangeOutlinedIcon from "@material-ui/icons/DateRangeOutlined";
+import AllInclusiveOutlinedIcon from "@material-ui/icons/AllInclusiveOutlined";
+import PlaceOutlinedIcon from "@material-ui/icons/PlaceOutlined";
+import FolderOutlinedIcon from "@material-ui/icons/FolderOutlined";
+import PhotoLibraryOutlinedIcon from "@material-ui/icons/PhotoLibraryOutlined";
 
 import { MenuList, MenuItem, Typography } from "@material-ui/core";
 
@@ -68,32 +76,57 @@ export default function TemporaryDrawer() {
       </List> */}
       <MenuList>
         <MenuItem component={Link} to={"/today"}>
+          <ListItemIcon>
+            <EventAvailableOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
           <Typography className={classes.menulist}>Today</Typography>
         </MenuItem>
         <MenuItem component={Link} to={"/tomorrow"}>
+          <ListItemIcon>
+            <DateRangeOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
           <Typography className={classes.menulist}>Tomorrow</Typography>
         </MenuItem>
         <MenuItem component={Link} to={"/important"}>
+          <ListItemIcon>
+            <ErrorOutlineOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
           <Typography className={classes.menulist}>Important</Typography>
         </MenuItem>
         <MenuItem component={Link} to={"/seven"}>
+          <ListItemIcon>
+            <Filter7OutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
           <Typography className={classes.menulist}>Next Seven days</Typography>
         </MenuItem>
         <MenuItem component={Link} to={"/someday"}>
+          <ListItemIcon>
+            <AllInclusiveOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
           <Typography className={classes.menulist}>Someday</Typography>
         </MenuItem>
       </MenuList>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <Box borderBottom={1} style={{ width: "90%", margin: "0 5% 0 5%" }} />
+      <MenuList>
+        <MenuItem component={Link} to={"/docs"}>
+          <ListItemIcon>
+            <FolderOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
+          <Typography className={classes.menulist}>Docs</Typography>
+        </MenuItem>
+        <MenuItem component={Link} to={"/photos"}>
+          <ListItemIcon>
+            <PhotoLibraryOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
+          <Typography className={classes.menulist}>Photos</Typography>
+        </MenuItem>
+        <MenuItem component={Link} to={"/places"}>
+          <ListItemIcon>
+            <PlaceOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
+          <Typography className={classes.menulist}>Places</Typography>
+        </MenuItem>
+      </MenuList>
     </div>
   );
 
