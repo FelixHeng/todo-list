@@ -10,6 +10,9 @@ import Someday from "./screens/Someday";
 import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import Profile from "./screens/Profile";
+import Docs from "./screens/Docs";
+import Photos from "./screens/Photos";
+import Places from "./screens/Places";
 
 import "./App.css";
 
@@ -26,6 +29,9 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile" component={Profile} />
+        <Route path="/docs" component={Docs} />
+        <Route path="/photos" component={Photos} />
+        <Route path="/places" component={Places} />
       </Switch>
     </BrowserRouter>
   );
