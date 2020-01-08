@@ -1,16 +1,13 @@
 import React from "react";
+import TodoBar from "../components/common/TodoBar";
 import { Link } from "react-router-dom";
 import { Button, AppBar, Toolbar, Typography } from "@material-ui/core";
 
 function SevendDays() {
   return (
     <div>
-      <AppBar color="primary" position="static" style={{ height: "64px" }}>
-        <Toolbar>
-          <Typography color="inherit">Welcome to your Todo List</Typography>
-        </Toolbar>
-      </AppBar>
-      TODO IN THE NEXT SEVEN DAYS
+      <TodoBar />
+      TODO IN THE NEXT 7 DAYS
       <Button component={Link} to={"/"}>
         Go back to Home
       </Button>

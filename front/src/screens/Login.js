@@ -1,38 +1,68 @@
 import React from "react";
+import TodoBar from "../components/common/TodoBar";
 import { Link } from "react-router-dom";
-import { Grid, Paper, TextField } from "@material-ui/core";
+import { Grid, Paper, TextField, Box, Button } from "@material-ui/core";
 
 function Login() {
   return (
     <div>
-      <Grid container alignItems="center" style={{ height: "100%" }}>
+      <TodoBar />
+      <Grid container justify="center">
         <Grid item xs={12}>
-          <Paper elevation={4} style={{ margin: "10rem 20rem 0 20rem" }}>
-            <Grid
-              container
-              alignItems="center"
-              justify="center"
+          <Grid
+            container
+            alignItems="center"
+            justify="center"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              padding: "5rem 2rem 2rem 2rem",
+              backgroundColor: "#ffedcd"
+            }}
+          >
+            <Box
+              justify={"center"}
+              border={1}
+              borderRadius={15}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                padding: "5rem"
+                padding: "1rem 2rem 3rem 2rem",
+                backgroundColor: "white"
               }}
             >
-              <h1>Signin</h1>
-              <form>
+              <h1
+                style={{
+                  fontFamily: "Poiret One",
+                  color: "#0D5FAD",
+                  textAlign: "center"
+                }}
+              >
+                Signin
+              </h1>
+              <form style={{ textAlign: "center" }}>
                 <TextField type="email" name="email" label="email" />
                 <br />
                 <br />
                 <TextField type="password" name="password" label="password" />
                 <br />
                 <br />
-                <Link to={"/profile"} type="submit" value="Submit">
+                {/* <Link to={"/profile"}> */}
+                <Button
+                  variant="outlined"
+                  justify="center"
+                  style={{
+                    marginTop: "2rem",
+                    color: "#0D5FAD",
+                    borderColor: "#0D5FAD",
+                    fontWeight: "bolder"
+                  }}
+                >
                   Submit
-                </Link>
+                </Button>
+                {/* </Link> */}
               </form>
-            </Grid>
-          </Paper>
+            </Box>
+          </Grid>
         </Grid>
       </Grid>
     </div>
