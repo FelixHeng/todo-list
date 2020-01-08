@@ -37,7 +37,7 @@ function Login() {
                   textAlign: "center"
                 }}
               >
-                Signin
+                Sign in
               </h1>
               <form style={{ textAlign: "center" }}>
                 <TextField type="email" name="email" label="email" />
@@ -61,6 +61,15 @@ function Login() {
                 </Button>
                 {/* </Link> */}
               </form>
+              <br />
+              <br />
+              <Box style={{ textAlign: "center" }}>
+                don't have an account yet ?
+                <br />
+                <Link to={"/signup"}>
+                  <Button>Sign up</Button>
+                </Link>
+              </Box>
             </Box>
           </Grid>
         </Grid>
