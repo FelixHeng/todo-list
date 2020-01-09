@@ -14,6 +14,13 @@ import { makeStyles } from "@material-ui/styles";
 import { amber } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    alignItems: "center",
+    justify: "center",
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "2rem"
+  },
   menulist: {
     variant: "h6"
   },
@@ -22,7 +29,6 @@ const useStyles = makeStyles(theme => ({
     color: "#0D5FAD",
     fontWeight: 200,
     fontSize: 120,
-    // fontFamily: "Poiret One",
     fontFamily: "Pacifico"
   },
   quote: {
@@ -30,7 +36,8 @@ const useStyles = makeStyles(theme => ({
     color: "#0D5FAD",
     fontWeight: 600,
     fontSize: 25,
-    fontFamily: "Poiret One"
+    fontFamily: "Poiret One",
+    letterSpacing: "3px"
   }
 }));
 
@@ -46,15 +53,10 @@ function Home() {
         </Toolbar>
       </AppBar> */}
       <TodoBar />
-      <Grid
-        container
-        alignItems="center"
-        justify="center"
-        style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}
-      >
+      <Grid container className={classes.container}>
         <Typography className={classes.title}>Todo</Typography>
         <Typography className={classes.quote}>
-          "The man who moves a mountain begins by carrying away small stones..."
+          Every journey begins with a single step...
         </Typography>
       </Grid>
       <Grid container justify="center">

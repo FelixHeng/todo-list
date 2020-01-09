@@ -80,8 +80,9 @@ function Signup() {
                 {/* </Link> */}
               </form>
               <br />
-              <Box style={{ color: "#717D7E" }}>
-                Already an account ?{" "}
+              <Box style={{ color: "#717D7E", textAlign: "center" }}>
+                Already have an account ?
+                <br />
                 <Link to={"/login"}>
                   <Button>Login</Button>
                 </Link>
