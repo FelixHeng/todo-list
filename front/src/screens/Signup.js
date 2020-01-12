@@ -23,6 +23,7 @@ function Signup() {
   const [lastname, setLastname] = useState("");
   const [open, setOpen] = useState(false);
   const [flash, setFlash] = useState("");
+  const [error, setError] = useState(false);
 
   const signup = event => {
     const body = {
@@ -31,17 +32,20 @@ function Signup() {
       name: name,
       lastname: lastname,
       open: open,
-      flash: flash
+      flash: flash,
+      error: error
     };
 
     console.log(body);
 
     axios.post("http://localhost:5000/auth/signup", body).then(
-      res => setFlash(res.data.flash)
+      res => setFlash(res.data.flash),
+      res => console.log("errroooooo", res)
+      // err => setFlash(err.data.flash),
+
       // res => console.log("resss", res.data.flash),
       // res => console.log("data", res.flash),
       // res => console.log("flash", res.data.flash),
-      // err => setFlash(err.data.flash)
     );
     setOpen(true);
     event.preventDefault();
@@ -92,9 +96,15 @@ function Signup() {
                 onClose={handleClose}
                 autoHideDuration={6000}
               >
-                <Alert onClose={handleClose} severity="success">
-                  {flash}
-                </Alert>
+                {error ? (
+                  <Alert onClose={handleClose} severity="error">
+                    {flash}
+                  </Alert>
+                ) : (
+                  <Alert onClose={handleClose} severity="success">
+                    {flash}
+                  </Alert>
+                )}
               </Snackbar>
 
               <form style={{ textAlign: "center" }} onSubmit={signup}>

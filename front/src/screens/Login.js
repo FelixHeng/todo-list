@@ -7,6 +7,7 @@ import { Grid, Paper, TextField, Box, Button } from "@material-ui/core";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [auth, setAuth] = useState(false);
 
   const login = () => {
     const body = {

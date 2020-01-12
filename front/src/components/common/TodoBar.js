@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import LeftDrawer from "./LeftDrawer";
+import Authenticated from "./Authenticated";
+import NotAuthenticated from "./NotAuthenticated";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,6 +24,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function TodoBar() {
   const classes = useStyles();
+  const [auth, setAuth] = useState(false);
+
+  function RenderAuth(props) {
+    const auth = props.auth;
+    if (auth) {
+      return <Authenticated />;
+    } else {
+      return <NotAuthenticated />;
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -41,12 +50,7 @@ export default function TodoBar() {
           <Typography variant="h6" className={classes.title}>
             Welcome
           </Typography>
-          <Button component={Link} to={"/login"} color="inherit">
-            Login
-          </Button>
-          <Button component={Link} to={"/signup"} color="inherit">
-            Sign up
-          </Button>
+          <RenderAuth auth={true} />
         </Toolbar>
       </AppBar>
     </div>
