@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import TodoBar from "../components/common/TodoBar";
 import { Link } from "react-router-dom";
 import { Grid, Paper, TextField, Box, Button } from "@material-ui/core";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = () => {
+    const body = {
+      email: email,
+      password: password
+    };
+    console.log(body);
+    axios.post("http://localhost:5000/auth/login", body).then(res => {
+      console.log("resss", res.data.token);
+      console.log(res.data);
+      const token = res.data.token;
+      localStorage.setItem("token", token);
+      console.log("token", localStorage.getItem("token"));
+    });
+  };
+
   return (
     <div>
       <TodoBar />
@@ -40,10 +59,20 @@ function Login() {
                 Sign in
               </h1>
               <form style={{ textAlign: "center" }}>
-                <TextField type="email" name="email" label="email" />
+                <TextField
+                  type="email"
+                  name="email"
+                  label="email"
+                  onChange={e => setEmail(e.target.value)}
+                />
                 <br />
                 <br />
-                <TextField type="password" name="password" label="password" />
+                <TextField
+                  type="password"
+                  name="password"
+                  label="password"
+                  onChange={e => setPassword(e.target.value)}
+                />
                 <br />
                 <br />
                 {/* <Link to={"/profile"}> */}
@@ -56,6 +85,7 @@ function Login() {
                     borderColor: "#0D5FAD",
                     fontWeight: "bolder"
                   }}
+                  onClick={login}
                 >
                   Submit
                 </Button>

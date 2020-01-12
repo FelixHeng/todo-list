@@ -9,8 +9,12 @@ const bcrypt = require("bcrypt");
 
 // Register page
 router.post("/signup", (req, res, next) => {
+  console.log(req.body);
+
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) {
+      console.log(err);
+
       return res.status(500).json({
         error: err
       });
@@ -51,6 +55,8 @@ router.post("/login", (req, res, next) => {
       if (err) return res.status(500).send(err);
       if (!user) return res.status(400).json({ info: info.message });
       const token = jwt.sign({ user }, jwtSecret);
+      res.header("Access-Control-Expose-Headers", "x-access-token");
+      res.set("x-access-token", token);
       return res.json({ user, token });
     }
   )(req, res, next);

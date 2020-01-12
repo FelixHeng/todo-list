@@ -1,14 +1,57 @@
 import React, { useState } from "react";
 import TodoBar from "../components/common/TodoBar";
 import { Link } from "react-router-dom";
-import { Grid, Paper, TextField, Box, Button } from "@material-ui/core";
+import {
+  Grid,
+  TextField,
+  Box,
+  Button,
+  Snackbar,
+  Slide
+} from "@material-ui/core";
+import axios from "axios";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
+  const [open, setOpen] = useState(false);
+  const [flash, setFlash] = useState("");
+
+  const signup = event => {
+    const body = {
+      email: email,
+      password: password,
+      name: name,
+      lastname: lastname,
+      open: open,
+      flash: flash
+    };
+
+    console.log(body);
+
+    axios.post("http://localhost:5000/auth/signup", body).then(
+      res => setFlash(res.data.flash)
+      // res => console.log("resss", res.data.flash),
+      // res => console.log("data", res.flash),
+      // res => console.log("flash", res.data.flash),
+      // err => setFlash(err.data.flash)
+    );
+    setOpen(true);
+    event.preventDefault();
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  console.log(flash);
   return (
     <div>
       <TodoBar />
@@ -44,24 +87,54 @@ function Signup() {
               >
                 Sign up
               </h1>
-              <form style={{ textAlign: "center" }}>
-                <TextField type="email" name="email" label="email" />
+              <Snackbar
+                open={open}
+                onClose={handleClose}
+                autoHideDuration={6000}
+              >
+                <Alert onClose={handleClose} severity="success">
+                  {flash}
+                </Alert>
+              </Snackbar>
+
+              <form style={{ textAlign: "center" }} onSubmit={signup}>
+                <TextField
+                  type="email"
+                  name="email"
+                  label="email"
+                  onChange={e => setEmail(e.target.value)}
+                />
                 <br />
                 <br />
-                <TextField type="password" name="password" label="password" />
-                <br />
+                <TextField
+                  type="password"
+                  name="password"
+                  label="password"
+                  onChange={e => setPassword(e.target.value)}
+                />
+                {/* <br />
                 <br />
                 <TextField
                   type="password"
                   name="passwordbis"
                   label="confirm password"
+                /> */}
+                <br />
+                <br />
+                <TextField
+                  type="text"
+                  name="name"
+                  label="name"
+                  onChange={e => setName(e.target.value)}
                 />
                 <br />
                 <br />
-                <TextField type="text" name="name" label="name" />
-                <br />
-                <br />
-                <TextField type="text" name="lastname" label="lastname" />
+                <TextField
+                  type="text"
+                  name="lastname"
+                  label="lastname"
+                  onChange={e => setLastname(e.target.value)}
+                />
                 <br />
                 <br />
                 {/* <Link to={"/"} type="submit" value="Submit"> */}
@@ -74,6 +147,7 @@ function Signup() {
                     borderColor: "#0D5FAD",
                     fontWeight: "bolder"
                   }}
+                  onClick={signup}
                 >
                   Submit
                 </Button>

@@ -24,4 +24,8 @@ router.post("/", (req, res, next) => {
   );
 });
 
+router.get("/today", (req, res) => {
+  const today = {};
+});
+
 module.exports = router;
