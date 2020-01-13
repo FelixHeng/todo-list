@@ -21,6 +21,7 @@ import AllInclusiveOutlinedIcon from "@material-ui/icons/AllInclusiveOutlined";
 import PlaceOutlinedIcon from "@material-ui/icons/PlaceOutlined";
 import FolderOutlinedIcon from "@material-ui/icons/FolderOutlined";
 import PhotoLibraryOutlinedIcon from "@material-ui/icons/PhotoLibraryOutlined";
+import AssignmentOutlinedIcon from "@material-ui/icons/AssignmentOutlined";
 
 import { MenuList, MenuItem, Typography } from "@material-ui/core";
 
@@ -75,6 +76,12 @@ export default function TemporaryDrawer() {
         ))}
       </List> */}
       <MenuList>
+        <MenuItem component={Link} to={"/all"}>
+          <ListItemIcon>
+            <AssignmentOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
+          <Typography className={classes.menulist}>All Tasks</Typography>
+        </MenuItem>
         <MenuItem component={Link} to={"/today"}>
           <ListItemIcon>
             <EventAvailableOutlinedIcon style={{ color: "white" }} />
@@ -87,17 +94,17 @@ export default function TemporaryDrawer() {
           </ListItemIcon>
           <Typography className={classes.menulist}>Tomorrow</Typography>
         </MenuItem>
-        <MenuItem component={Link} to={"/important"}>
-          <ListItemIcon>
-            <ErrorOutlineOutlinedIcon style={{ color: "white" }} />
-          </ListItemIcon>
-          <Typography className={classes.menulist}>Important</Typography>
-        </MenuItem>
         <MenuItem component={Link} to={"/seven"}>
           <ListItemIcon>
             <Filter7OutlinedIcon style={{ color: "white" }} />
           </ListItemIcon>
           <Typography className={classes.menulist}>Next Seven days</Typography>
+        </MenuItem>
+        <MenuItem component={Link} to={"/important"}>
+          <ListItemIcon>
+            <ErrorOutlineOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
+          <Typography className={classes.menulist}>Important</Typography>
         </MenuItem>
         <MenuItem component={Link} to={"/someday"}>
           <ListItemIcon>

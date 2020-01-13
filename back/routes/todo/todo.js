@@ -25,8 +25,21 @@ router.post("/", (req, res, next) => {
   );
 });
 
-router.get("/today", (req, res) => {
-  const today = {};
+router.get("/:id/all", (req, res, next) => {
+  const userId = req.params.id;
+  connection.query(
+    `SELECT * FROM todos WHERE users_id=${userId} `,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+
+        res.status(500).send("error");
+      } else {
+        console.log("results : ", result);
+        res.status(200).send(result);
+      }
+    }
+  );
 });
 
 module.exports = router;

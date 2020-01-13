@@ -49,8 +49,6 @@ function Todo({
     catColors = othersColors;
   }
 
-  console.log("caaaat", catColors);
-  console.log("value", category);
   const useStyles = makeStyles({
     category: {
       background: catColors,

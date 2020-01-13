@@ -34,7 +34,8 @@ router.post("/signup", (req, res, next) => {
           if (err) {
             console.log("erroooeeeor", err);
             res.status(500).json({
-              flash: "Oops, that's unavailable! please try another email"
+              flash: "Oops, that's unavailable! please try another email",
+              err: err
             });
           } else {
             res.status(200).json({ flash: "User has been signed up !" });

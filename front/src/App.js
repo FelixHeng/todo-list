@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Home from "./screens/Home";
+import AllTasks from "./screens/AllTasks";
 import Today from "./screens/Today";
 import Tomorrow from "./screens/Tomorrow";
 import Important from "./screens/Important";
@@ -21,6 +22,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/all" component={AllTasks} />
         <Route path="/today" component={Today} />
         <Route path="/tomorrow" component={Tomorrow} />
         <Route path="/important" component={Important} />
