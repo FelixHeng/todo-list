@@ -30,9 +30,12 @@ router.post("/signup", (req, res, next) => {
       connection.query(
         "INSERT INTO users SET ?",
         user,
-        (error, results, fields) => {
-          if (error) {
-            res.status(500).json({ flash: error.message });
+        (err, results, fields) => {
+          if (err) {
+            console.log("erroooeeeor", err);
+            res.status(500).json({
+              flash: "Oops, that's unavailable! please try another email"
+            });
           } else {
             res.status(200).json({ flash: "User has been signed up !" });
           }

@@ -22,18 +22,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TodoBar() {
+const TodoBar = ({ auth }) => {
   const classes = useStyles();
-  const [auth, setAuth] = useState(false);
 
-  function RenderAuth(props) {
-    const auth = props.auth;
-    if (auth) {
-      return <Authenticated />;
-    } else {
-      return <NotAuthenticated />;
-    }
-  }
+  const loggedOut = () => {
+    localStorage.removeItem("token");
+  };
 
   return (
     <div className={classes.root}>
@@ -50,9 +44,15 @@ export default function TodoBar() {
           <Typography variant="h6" className={classes.title}>
             Welcome
           </Typography>
-          <RenderAuth auth={true} />
+          {auth !== null ? (
+            <Authenticated auth={loggedOut} />
+          ) : (
+            <NotAuthenticated />
+          )}
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
+
+export default TodoBar;

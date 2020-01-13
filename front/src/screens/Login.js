@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TodoBar from "../components/common/TodoBar";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import { Grid, Paper, TextField, Box, Button } from "@material-ui/core";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [auth, setAuth] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
 
   const login = () => {
     const body = {
@@ -26,7 +26,7 @@ function Login() {
 
   return (
     <div>
-      <TodoBar />
+      <TodoBar auth={loggedIn} />
       <Grid container justify="center">
         <Grid item xs={12}>
           <Grid
@@ -87,6 +87,8 @@ function Login() {
                     fontWeight: "bolder"
                   }}
                   onClick={login}
+                  component={Link}
+                  to={"/"}
                 >
                   Submit
                 </Button>

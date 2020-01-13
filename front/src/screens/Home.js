@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TodoBar from "../components/common/TodoBar";
 
@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 function Home() {
   const classes = useStyles();
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
   return (
     <div>
       {/* <AppBar color="primary" position="static" style={{ height: "10vh" }}>
@@ -52,7 +53,7 @@ function Home() {
           </Typography>
         </Toolbar>
       </AppBar> */}
-      <TodoBar />
+      <TodoBar auth={loggedIn} />
       <Grid container className={classes.container}>
         <Typography className={classes.title}>Todo</Typography>
         <Typography className={classes.quote}>
