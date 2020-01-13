@@ -31,13 +31,14 @@ function TodoApp() {
     // }
   ];
   const [todos, setTodos] = useState(initialTodos);
-  const addTodo = (newTodoText, newCategory, newDate) => {
+  const addTodo = (newTodoText, newCategory, newUserId, newDate) => {
     setTodos([
       ...todos,
       {
         id: uuid(),
         category: newCategory,
         task: newTodoText,
+        userId: newUserId,
         date: newDate,
         completed: false
       }
@@ -56,10 +57,16 @@ function TodoApp() {
     setTodos(updatedTodos);
   };
 
-  const editTodo = (todoId, newTask, newCategory, newDate) => {
+  const editTodo = (todoId, newTask, newCategory, newDate, newUserId) => {
     const updatedTodos = todos.map(todo =>
       todo.id === todoId
-        ? { ...todo, task: newTask, category: newCategory, date: newDate }
+        ? {
+            ...todo,
+            task: newTask,
+            category: newCategory,
+            date: newDate,
+            userId: newUserId
+          }
         : todo
     );
     setTodos(updatedTodos);

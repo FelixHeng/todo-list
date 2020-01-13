@@ -15,6 +15,7 @@ function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
               category={todo.category}
               date={todo.date}
               key={todo.id}
+              userId={todo.userId}
               completed={todo.completed}
               removeTodo={removeTodo}
               toggleTodo={toggleTodo}

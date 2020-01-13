@@ -20,6 +20,7 @@ function Todo({
   task,
   category,
   date,
+  userId,
   completed,
   removeTodo,
   toggleTodo,
@@ -73,6 +74,7 @@ function Todo({
           task={task}
           category={category}
           date={date}
+          userId={userId}
           toggleEditForm={toggle}
         />
       ) : (
@@ -112,6 +114,7 @@ function Todo({
               borderRadius={10}
             >
               {date}
+              {userId}
             </Box>
             {/* <ListItemSecondaryAction> */}
             {/* </ListItemSecondaryAction> */}

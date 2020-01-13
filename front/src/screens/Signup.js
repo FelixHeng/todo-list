@@ -40,7 +40,9 @@ function Signup() {
 
     axios.post("http://localhost:5000/auth/signup", body).then(
       res => setFlash(res.data.flash),
-      res => console.log("errroooooo", res)
+      err => setFlash(err),
+      res => console.log("res data", res),
+      err => console.log("errroooooo", err)
       // err => setFlash(err.data.flash),
 
       // res => console.log("resss", res.data.flash),
@@ -58,7 +60,7 @@ function Signup() {
   console.log(flash);
   return (
     <div>
-      <TodoBar />
+      <TodoBar auth={null} />
       <Grid container justify="center" style={{ height: "100%" }}>
         <Grid item xs={12}>
           <Grid

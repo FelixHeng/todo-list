@@ -56,7 +56,7 @@ router.post("/login", (req, res, next) => {
     },
     (err, user, info) => {
       if (err) return res.status(500).send(err);
-      if (!user) return res.status(400).json({ info: info.message });
+      // if (!user) return res.status(400).json({ info: info.message });
       const token = jwt.sign({ user }, jwtSecret);
       res.header("Access-Control-Expose-Headers", "x-access-token");
       res.set("x-access-token", token);

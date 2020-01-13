@@ -8,19 +8,24 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
+  const [userId, setUserId] = useState(localStorage.getItem("id"));
 
   const login = () => {
     const body = {
       email: email,
       password: password
     };
-    console.log(body);
+    console.log("Login bodyyyy", body);
     axios.post("http://localhost:5000/auth/login", body).then(res => {
-      console.log("resss", res.data.token);
-      console.log(res.data);
+      // console.log("res dataaaa", res.data);
       const token = res.data.token;
+      // console.log("token", res.data.token);
+      const getId = res.data.user.id;
+      localStorage.setItem("id", getId);
+      // console.log("user iddd", userId);
       localStorage.setItem("token", token);
-      console.log("token", localStorage.getItem("token"));
+      window.location.reload();
+      // console.log("token in the local storage", localStorage.getItem("token"));
     });
   };
 

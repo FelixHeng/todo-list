@@ -27,6 +27,8 @@ const TodoBar = ({ auth }) => {
 
   const loggedOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    window.location.reload();
   };
 
   return (

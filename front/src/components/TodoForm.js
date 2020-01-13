@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import useInputState from "../hooks/useInputState";
 import useToggleState from "../hooks/useToggleState";
 import Category from "./Category";
@@ -11,14 +12,7 @@ import {
   TimePicker
 } from "@material-ui/pickers";
 
-import {
-  Paper,
-  TextField,
-  Button,
-  ListItemSecondaryAction,
-  ListItem,
-  Grid
-} from "@material-ui/core";
+import { Button, ListItem, Grid } from "@material-ui/core";
 
 import { green } from "@material-ui/core/colors";
 import AddIcon from "@material-ui/icons/Add";
@@ -27,7 +21,12 @@ function TodoForm({ addTodo }) {
   const [category, setCategory] = useState("Others");
   const [value, handleChange, reset] = useInputState("");
   const [isAdding, toggle] = useToggleState(false);
+  const [userId, setUserId] = useState(localStorage.getItem("id"));
   const [selectedDate, handleDateChange] = useState(new Date());
+  const dateSql = selectedDate
+    .toISOString()
+    .slice(0, 19)
+    .replace("T", " ");
   const date = selectedDate.toLocaleString("fr-FR", {
     weekday: "long",
     year: "numeric",
@@ -36,13 +35,41 @@ function TodoForm({ addTodo }) {
     hour: "2-digit",
     minute: "2-digit"
   });
-  const handleSubmit = e => {
-    e.preventDefault();
+
+  const handleSubmit = event => {
+    const body = {
+      value: value,
+      category: category,
+      userId: userId,
+      date: dateSql
+    };
+
+    console.log("date sql ----", dateSql);
+    console.log("body --------------------", body);
+
+    axios.post("http://localhost:5000/todo", body).then(
+      res => console.log("resss todoo", res)
+      // err => setFlash(err.data.flash),
+
+      // res => console.log("resss", res.data.flash),
+      // res => console.log("data", res.flash),
+      // res => console.log("flash", res.data.flash),
+    );
+    event.preventDefault();
     if (!value) return;
-    addTodo(value, category, date);
+    addTodo(value, category, userId, date);
     reset();
     toggle();
   };
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   if (!value) return;
+  //   addTodo(value, category, userId, date);
+  //   reset();
+  //   toggle();
+  // };
+
   const handleChangeCat = value => {
     setCategory(value);
   };

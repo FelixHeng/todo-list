@@ -4,10 +4,10 @@ const router = express.Router();
 
 router.post("/", (req, res, next) => {
   const todo = {
-    task: req.body.task,
-    todo_at: req.body.todo_at,
-    users_id: req.body.users_id,
-    categories_id: req.body.categories_id
+    task: req.body.value,
+    todo_at: req.body.date,
+    users_id: req.body.userId,
+    categories_id: req.body.category
   };
   console.log("todooooo", todo);
 
@@ -16,6 +16,7 @@ router.post("/", (req, res, next) => {
     todo,
     (error, results, fields) => {
       if (error) {
+        console.log(error);
         res.status(500).send(`Erooooororooo`);
       } else {
         res.sendStatus(200);
