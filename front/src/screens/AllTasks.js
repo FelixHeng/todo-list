@@ -57,9 +57,15 @@ function AllTasks() {
 
   const classes = useStyles();
 
-  const removeTodo = todoId => {
-    const updatedAll = all.filter(todo => todo.id !== todoId);
-    setAll(updatedAll);
+  const removeTodo = id => {
+    axios
+      .delete(`http://localhost:5000/todo/${userId}/all/${id}`)
+      .then(response => response.data)
+      .then(() => {
+        window.location.reload();
+      });
+    // const updatedAll = all.filter(todo => todo.id !== todoId);
+    // setAll(updatedAll);
   };
 
   const toggleTodo = todoId => {
@@ -109,7 +115,7 @@ function AllTasks() {
               task={todo.task}
               date={todo.todo_at}
               category={todo.categories_id}
-              removeTodo={removeTodo}
+              removeTodo={() => removeTodo(todo.id)}
               toggleTodo={toggleTodo}
               editTodo={editTodo}
               id={todo.id}

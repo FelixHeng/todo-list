@@ -42,4 +42,24 @@ router.get("/:id/all", (req, res, next) => {
   );
 });
 
+router.delete("/:userId/all/:id", (req, res, next) => {
+  const userId = req.params.userId;
+  const taskId = req.params.id;
+  console.log(req.body);
+  connection.query(
+    `DELETE FROM todos WHERE users_id=${userId} AND id = ${taskId}`,
+    taskId,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+
+        res.status(500).send("error");
+      } else {
+        console.log("results : ", result);
+        res.status(200).send(result);
+      }
+    }
+  );
+});
+
 module.exports = router;
