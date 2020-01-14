@@ -63,6 +63,7 @@ function Todo({
   const classes = useStyles();
   // console.log("cateeee", category);
   // console.log("daaate", date);
+  console.log("iddd item", id);
   return (
     <ListItem>
       {isEditing ? (
