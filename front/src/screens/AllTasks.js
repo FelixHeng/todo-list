@@ -12,17 +12,38 @@ import {
   List,
   Box,
   makeStyles,
-  IconButton
+  Typography
 } from "@material-ui/core/";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import axios from "axios";
 
 function AllTasks() {
   const [all, setAll] = useState([]);
   const [userId, setUserId] = useState(localStorage.getItem("id"));
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
 
-  const useStyles = makeStyles({
+  const useStyles = makeStyles(theme => ({
+    container: {
+      alignItems: "center",
+      justify: "center",
+      display: "flex",
+      flexDirection: "column"
+    },
+    title: {
+      textAlign: "center",
+      color: "#0D5FAD",
+      fontWeight: 200,
+      fontSize: 80,
+      fontFamily: "Pacifico"
+    },
+    quote: {
+      textAlign: "center",
+      color: "#0D5FAD",
+      fontWeight: 600,
+      fontSize: 25,
+      fontFamily: "Poiret One",
+      letterSpacing: "3px",
+      marginTop: "1rem"
+    },
     category: {
       // background: catColors,
       border: 0,
@@ -32,7 +53,8 @@ function AllTasks() {
       pointerEvents: "none"
       // textTransform: "none"
     }
-  });
+  }));
+
   const classes = useStyles();
 
   const removeTodo = todoId => {
@@ -72,11 +94,13 @@ function AllTasks() {
 
   return (
     <div>
-      <TodoBar />
-      All your Tasks
-      <Button component={Link} to={"/"}>
-        Go back to Home
-      </Button>
+      <TodoBar auth={loggedIn} />
+      <Grid container className={classes.container}>
+        <Typography className={classes.title}>All your Tasks</Typography>
+        <Typography className={classes.quote}>
+          First step is the hardest just make it...
+        </Typography>
+      </Grid>
       <List>
         <div>
           {all.map(todo => (

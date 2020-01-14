@@ -63,75 +63,77 @@ function Todo({
   console.log("iddddd", id);
   return (
     <ListItem>
-      {isEditing ? (
-        <EditTodoForm
-          editTodo={editTodo}
-          id={id}
-          task={task}
-          category={category}
-          date={date}
-          userId={userId}
-          toggleEditForm={toggle}
-        />
-      ) : (
-        <Grid container justify="center">
-          <Grid
-            item
-            xs={10}
-            md={8}
-            lg={5}
-            style={{ marginTop: "0.5rem", alignContent: "center" }}
+      <Grid container justify="center">
+        <Grid
+          item
+          xs={10}
+          md={8}
+          lg={5}
+          style={{ marginTop: "0.5rem", alignContent: "center" }}
+        >
+          <Box
+            border={1}
+            borderRadius={10}
+            style={{ backgroundColor: "white" }}
           >
-            <Box
-              border={1}
-              borderRadius={10}
-              style={{ backgroundColor: "white" }}
+            <ListItemText
+              style={{
+                textDecoration: done ? "line-through" : "none"
+              }}
             >
-              <ListItemText
+              <Box style={{ display: "flex" }}>
+                <Box flexGrow={1}>
+                  <Checkbox
+                    tabIndex={-1}
+                    checked={completed}
+                    onClick={() => setDone(!done)}
+                  />
+                  <Button className={classes.category}>{category}</Button>
+                </Box>
+                <Box display="flex" justifyContent="flex-end">
+                  <IconButton aria-label="Edit" onClick={toggle}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="Delete"
+                    onClick={() => removeTodo(id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Box>
+              </Box>
+
+              {isEditing ? (
+                <EditTodoForm
+                  editTodo={editTodo}
+                  id={id}
+                  task={task}
+                  category={category}
+                  date={date}
+                  userId={userId}
+                  toggleEditForm={toggle}
+                />
+              ) : (
+                <div style={{ marginLeft: "0.7rem", width: "80%" }}>{task}</div>
+              )}
+
+              <Box
                 style={{
-                  textDecoration: done ? "line-through" : "none"
+                  marginLeft: "0.7rem",
+                  marginTop: "0.3rem",
+                  width: "45%",
+                  padding: "0.3rem"
                 }}
               >
-                <Box style={{ display: "flex" }}>
-                  <Box flexGrow={1}>
-                    <Checkbox
-                      tabIndex={-1}
-                      checked={completed}
-                      onClick={() => setDone(!done)}
-                    />
-                    <Button className={classes.category}>{category}</Button>
-                  </Box>
-                  <Box display="flex" justifyContent="flex-end">
-                    <IconButton aria-label="Edit" onClick={toggle}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="Delete"
-                      onClick={() => removeTodo(id)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Box>
-                </Box>
-                <div style={{ marginLeft: "0.7rem", width: "80%" }}>{task}</div>
-                <Box
-                  style={{
-                    marginLeft: "0.7rem",
-                    marginTop: "0.3rem",
-                    width: "45%",
-                    padding: "0.3rem"
-                  }}
-                >
-                  {date}
-                  {userId}
-                </Box>
-                {/* <ListItemSecondaryAction> */}
-                {/* </ListItemSecondaryAction> */}
-              </ListItemText>
-            </Box>
-          </Grid>
+                {date}
+                {userId}
+              </Box>
+              {/* <ListItemSecondaryAction> */}
+              {/* </ListItemSecondaryAction> */}
+            </ListItemText>
+          </Box>
         </Grid>
-      )}
+      </Grid>
     </ListItem>
   );
 }

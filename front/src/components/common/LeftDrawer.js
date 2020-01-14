@@ -22,6 +22,7 @@ import PlaceOutlinedIcon from "@material-ui/icons/PlaceOutlined";
 import FolderOutlinedIcon from "@material-ui/icons/FolderOutlined";
 import PhotoLibraryOutlinedIcon from "@material-ui/icons/PhotoLibraryOutlined";
 import AssignmentOutlinedIcon from "@material-ui/icons/AssignmentOutlined";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 
 import { MenuList, MenuItem, Typography } from "@material-ui/core";
 
@@ -76,6 +77,12 @@ export default function TemporaryDrawer() {
         ))}
       </List> */}
       <MenuList>
+        <MenuItem component={Link} to={"/"}>
+          <ListItemIcon>
+            <HomeOutlinedIcon style={{ color: "white" }} />
+          </ListItemIcon>
+          <Typography className={classes.menulist}>Home</Typography>
+        </MenuItem>
         <MenuItem component={Link} to={"/all"}>
           <ListItemIcon>
             <AssignmentOutlinedIcon style={{ color: "white" }} />
