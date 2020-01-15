@@ -18,6 +18,7 @@ import axios from "axios";
 
 function AllTasks() {
   const [all, setAll] = useState([]);
+  const [task, setTask] = useState("tesssst");
   const [userId, setUserId] = useState(localStorage.getItem("id"));
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
 
@@ -68,26 +69,33 @@ function AllTasks() {
     // setAll(updatedAll);
   };
 
-  const toggleTodo = todoId => {
+  const toggleTodo = id => {
     const updatedAll = all.map(todo =>
-      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
     setAll(updatedAll);
   };
 
-  const editTodo = (todoId, newTask, newCategory, newDate, newUserId) => {
-    const updatedAll = all.map(todo =>
-      todo.id === todoId
+  const editTodo = (id, value) => {
+    const updatedTodos = all.map(todo =>
+      todo.id === id
         ? {
             ...todo,
-            task: newTask,
-            category: newCategory,
-            date: newDate,
-            userId: newUserId
+            task: value,
+            id: id
           }
         : todo
     );
-    setAll(updatedAll);
+    setAll(updatedTodos);
+    console.log("all", all);
+    const body = { task: value };
+    axios
+      .put(`http://localhost:5000/todo/${userId}/all/${id}`, body)
+      .then(response => response.data)
+      .then(data => {
+        console.log(data);
+        // window.location.reload();
+      });
   };
 
   useEffect(() => {
@@ -96,7 +104,6 @@ function AllTasks() {
       res => console.log("get res", res.data)
     );
   }, []);
-  console.log(all);
 
   return (
     <div>
@@ -109,7 +116,7 @@ function AllTasks() {
       </Grid>
       <List>
         <div>
-          {all.map(todo => (
+          {all.map((todo, i) => (
             <Task
               todos={all}
               task={todo.task}

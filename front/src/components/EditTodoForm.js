@@ -13,6 +13,7 @@ function EditTodoForm({
   userId
 }) {
   const [value, handleChange, reset] = useInputState(task);
+  console.log("editodoform OK", value);
   return (
     <form
       onSubmit={e => {
@@ -20,6 +21,7 @@ function EditTodoForm({
         editTodo(id, value, category, date, userId);
         reset();
         toggleEditForm();
+        console.log("valuuuue", value);
       }}
       style={{ marginLeft: "1rem", width: "50%" }}
     >

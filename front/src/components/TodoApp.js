@@ -71,7 +71,7 @@ function TodoApp() {
     );
     setTodos(updatedTodos);
   };
-
+  console.log("setTodossss", todos);
   return (
     <Paper>
       <TodoForm addTodo={addTodo} />

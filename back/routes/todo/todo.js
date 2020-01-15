@@ -62,4 +62,28 @@ router.delete("/:userId/all/:id", (req, res, next) => {
   );
 });
 
+router.put("/:userId/all/:id", (req, res) => {
+  // const body = {
+  //   task: req.body.value,
+  //   todo_at: req.body.date,
+  //   users_id: req.body.userId,
+  //   categories_id: req.body.category
+  // };
+  const userId = req.params.userId;
+  const taskId = req.params.id;
+  const task = req.body.task;
+  console.log("REQUEST ===============", req.body);
+  connection.query(
+    `UPDATE todos SET task = '${task}' WHERE users_id=${userId} AND id = ${taskId}`,
+    (err, results) => {
+      if (err) {
+        res.status(500).send(`Error`);
+        console.log(err);
+      } else {
+        res.status(200).send("OK");
+      }
+    }
+  );
+});
+
 module.exports = router;

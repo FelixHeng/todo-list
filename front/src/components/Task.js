@@ -23,7 +23,8 @@ function Todo({
   userId,
   completed,
   removeTodo,
-  editTodo
+  editTodo,
+  value
 }) {
   const [isEditing, toggle] = useToggleState(false);
   const [done, setDone] = useState(false);

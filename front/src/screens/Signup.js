@@ -39,10 +39,15 @@ function Signup() {
     console.log(body);
 
     axios.post("http://localhost:5000/auth/signup", body).then(
-      res => setFlash(res.data.flash),
-      err => setFlash(err),
-      res => console.log("res data", res),
-      err => console.log("errroooooo", err)
+      res => {
+        console.log(res);
+        setFlash(res.data.flash);
+        if (res.data.err === true) setError(true);
+        else setError(false);
+      }
+      // err => setFlash(err),
+      // res => console.log("res data", res),
+      // err => console.log("errroooooo", err)
       // err => setFlash(err.data.flash),
 
       // res => console.log("resss", res.data.flash),
