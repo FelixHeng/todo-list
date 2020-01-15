@@ -10,6 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const authRouter = require("./routes/auth/auth.js");
 const todoRouter = require("./routes/todo/todo");
+const allRouter = require("./routes/todo/all");
+const todayRouter = require("./routes/todo/today");
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -20,6 +22,8 @@ app.use(cors());
 
 app.use("/auth", authRouter);
 app.use("/todo", todoRouter);
+app.use("/todo", allRouter);
+app.use("/todo", todayRouter);
 app.get("/profile", passport.authenticate("jwt", { session: false }), function(
   req,
   res
