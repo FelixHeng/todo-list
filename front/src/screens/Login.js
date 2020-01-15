@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TodoBar from "../components/common/TodoBar";
 import { Link, Router } from "react-router-dom";
-import { Grid, Paper, TextField, Box, Button } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  TextField,
+  Box,
+  Button,
+  FormControl
+} from "@material-ui/core";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -64,23 +71,23 @@ function Login() {
               >
                 Sign in
               </h1>
-              <form style={{ textAlign: "center" }}>
+              <FormControl
+                style={{ textAlign: "center", flexDirection: "column" }}
+              >
                 <TextField
                   type="email"
                   name="email"
                   label="email"
                   onChange={e => setEmail(e.target.value)}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
                 />
-                <br />
-                <br />
                 <TextField
                   type="password"
                   name="password"
                   label="password"
                   onChange={e => setPassword(e.target.value)}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
                 />
-                <br />
-                <br />
                 {/* <Link to={"/profile"}> */}
                 <Button
                   variant="outlined"
@@ -98,15 +105,21 @@ function Login() {
                   Submit
                 </Button>
                 {/* </Link> */}
-              </form>
-              <br />
-              <br />
-              <Box style={{ textAlign: "center", color: "#717D7E" }}>
+              </FormControl>
+              <Box
+                style={{
+                  textAlign: "center",
+                  color: "#717D7E",
+                  marginTop: "1rem",
+                  marginBottom: "1rem"
+                }}
+              >
                 don't have an account yet ?
-                <br />
-                <Link to={"/signup"}>
-                  <Button>Sign up</Button>
-                </Link>
+                <Box>
+                  <Link to={"/signup"}>
+                    <Button>Sign up</Button>
+                  </Link>
+                </Box>
               </Box>
             </Box>
           </Grid>

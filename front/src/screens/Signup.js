@@ -7,7 +7,7 @@ import {
   Box,
   Button,
   Snackbar,
-  Slide
+  FormControl
 } from "@material-ui/core";
 import axios from "axios";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -38,22 +38,12 @@ function Signup() {
 
     console.log(body);
 
-    axios.post("http://localhost:5000/auth/signup", body).then(
-      res => {
-        console.log(res);
-        setFlash(res.data.flash);
-        if (res.data.err === true) setError(true);
-        else setError(false);
-      }
-      // err => setFlash(err),
-      // res => console.log("res data", res),
-      // err => console.log("errroooooo", err)
-      // err => setFlash(err.data.flash),
-
-      // res => console.log("resss", res.data.flash),
-      // res => console.log("data", res.flash),
-      // res => console.log("flash", res.data.flash),
-    );
+    axios.post("http://localhost:5000/auth/signup", body).then(res => {
+      console.log(res);
+      setFlash(res.data.flash);
+      if (res.data.err === true) setError(true);
+      else setError(false);
+    });
     setOpen(true);
     event.preventDefault();
   };
@@ -76,7 +66,7 @@ function Signup() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              padding: "5rem 2rem 2rem 2rem",
+              padding: "5rem 2rem 1rem 2rem",
               backgroundColor: "#ffedcd"
             }}
           >
@@ -114,46 +104,37 @@ function Signup() {
                 )}
               </Snackbar>
 
-              <form style={{ textAlign: "center" }} onSubmit={signup}>
+              <FormControl
+                style={{ textAlign: "center", flexDirection: "column" }}
+              >
                 <TextField
                   type="email"
                   name="email"
                   label="email"
                   onChange={e => setEmail(e.target.value)}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
                 />
-                <br />
-                <br />
                 <TextField
                   type="password"
                   name="password"
                   label="password"
                   onChange={e => setPassword(e.target.value)}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
                 />
-                {/* <br />
-                <br />
-                <TextField
-                  type="password"
-                  name="passwordbis"
-                  label="confirm password"
-                /> */}
-                <br />
-                <br />
                 <TextField
                   type="text"
                   name="name"
                   label="name"
                   onChange={e => setName(e.target.value)}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
                 />
-                <br />
-                <br />
                 <TextField
                   type="text"
                   name="lastname"
                   label="lastname"
                   onChange={e => setLastname(e.target.value)}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
                 />
-                <br />
-                <br />
                 {/* <Link to={"/"} type="submit" value="Submit"> */}
                 <Button
                   variant="outlined"
@@ -169,14 +150,20 @@ function Signup() {
                   Submit
                 </Button>
                 {/* </Link> */}
-              </form>
-              <br />
-              <Box style={{ color: "#717D7E", textAlign: "center" }}>
+              </FormControl>
+              <Box
+                style={{
+                  color: "#717D7E",
+                  textAlign: "center",
+                  marginTop: "1rem"
+                }}
+              >
                 Already have an account ?
-                <br />
-                <Link to={"/login"}>
-                  <Button>Login</Button>
-                </Link>
+                <Box>
+                  <Link to={"/login"}>
+                    <Button>Login</Button>
+                  </Link>
+                </Box>
               </Box>
             </Box>
           </Grid>

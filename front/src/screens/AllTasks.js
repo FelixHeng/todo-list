@@ -94,7 +94,7 @@ function AllTasks() {
       .then(response => response.data)
       .then(data => {
         console.log(data);
-        // window.location.reload();
+        window.location.reload();
       });
   };
 
