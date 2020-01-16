@@ -2,10 +2,10 @@ const express = require("express");
 const connection = require("../../helpers/db");
 const router = express.Router();
 
-router.get("/:id/all", (req, res, next) => {
+router.get("/:id/today", (req, res, next) => {
   const userId = req.params.id;
   connection.query(
-    `SELECT * FROM todos WHERE users_id=${userId} `,
+    `SELECT *, DATE_FORMAT(todos.todo_at, '%Y-%m-%d') FROM todos WHERE users_id=${userId} AND DATE(todo_at) = CURRENT_DATE() `,
     (err, result) => {
       if (err) {
         console.log(err);
@@ -19,7 +19,7 @@ router.get("/:id/all", (req, res, next) => {
   );
 });
 
-router.delete("/:userId/all/:id", (req, res, next) => {
+router.delete("/:userId/today/:id", (req, res, next) => {
   const userId = req.params.userId;
   const taskId = req.params.id;
   console.log(req.body);
@@ -39,7 +39,7 @@ router.delete("/:userId/all/:id", (req, res, next) => {
   );
 });
 
-router.put("/:userId/all/:id", (req, res) => {
+router.put("/:userId/today/:id", (req, res) => {
   const userId = req.params.userId;
   const taskId = req.params.id;
   const task = req.body.task;

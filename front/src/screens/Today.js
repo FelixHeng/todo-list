@@ -60,7 +60,7 @@ function AllTasks() {
 
   const removeTodo = id => {
     axios
-      .delete(`http://localhost:5000/todo/${userId}/all/${id}`)
+      .delete(`http://localhost:5000/todo/${userId}/today/${id}`)
       .then(response => response.data)
       .then(() => {
         window.location.reload();
@@ -90,7 +90,7 @@ function AllTasks() {
     console.log("all", all);
     const body = { task: value };
     axios
-      .put(`http://localhost:5000/todo/${userId}/all/${id}`, body)
+      .put(`http://localhost:5000/todo/${userId}/today/${id}`, body)
       .then(response => response.data)
       .then(data => {
         console.log(data);
@@ -99,7 +99,7 @@ function AllTasks() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/todo/${userId}/all`).then(
+    axios.get(`http://localhost:5000/todo/${userId}/today`).then(
       res => setAll(res.data),
       res => console.log("get res", res.data)
     );
@@ -109,9 +109,9 @@ function AllTasks() {
     <div>
       <TodoBar auth={loggedIn} />
       <Grid container className={classes.container}>
-        <Typography className={classes.title}>All your Tasks</Typography>
+        <Typography className={classes.title}>Today's tasks</Typography>
         <Typography className={classes.quote}>
-          First step is the hardest just make it...
+          Make today so awesome !
         </Typography>
       </Grid>
       <List>

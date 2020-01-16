@@ -18,7 +18,6 @@ import axios from "axios";
 
 function AllTasks() {
   const [all, setAll] = useState([]);
-  const [task, setTask] = useState("tesssst");
   const [userId, setUserId] = useState(localStorage.getItem("id"));
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
 
