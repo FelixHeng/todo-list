@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core/";
 import axios from "axios";
 
-function AllTasks() {
+function Today() {
   const [all, setAll] = useState([]);
   const [task, setTask] = useState("tesssst");
   const [userId, setUserId] = useState(localStorage.getItem("id"));
@@ -142,4 +142,4 @@ function AllTasks() {
   );
 }
 
-export default AllTasks;
+export default Today;

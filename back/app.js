@@ -13,6 +13,7 @@ const todoRouter = require("./routes/todo/todo");
 const allRouter = require("./routes/todo/all");
 const todayRouter = require("./routes/todo/today");
 const tomorrowRouter = require("./routes/todo/tomorrow");
+const sevendaysRouter = require("./routes/todo/sevendays");
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ app.use("/todo", todoRouter);
 app.use("/todo", allRouter);
 app.use("/todo", todayRouter);
 app.use("/todo", tomorrowRouter);
+app.use("/todo", sevendaysRouter);
 app.get("/profile", passport.authenticate("jwt", { session: false }), function(
   req,
   res

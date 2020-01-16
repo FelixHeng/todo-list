@@ -18,6 +18,7 @@ import axios from "axios";
 
 function SevenDays() {
   const [all, setAll] = useState([]);
+  const [task, setTask] = useState("tesssst");
   const [userId, setUserId] = useState(localStorage.getItem("id"));
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
 
@@ -57,61 +58,71 @@ function SevenDays() {
 
   const classes = useStyles();
 
-  const removeTodo = todoId => {
-    const updatedAll = all.filter(todo => todo.id !== todoId);
-    setAll(updatedAll);
+  const removeTodo = id => {
+    axios
+      .delete(`http://localhost:5000/todo/${userId}/seven/${id}`)
+      .then(response => response.data)
+      .then(() => {
+        window.location.reload();
+      });
+    // const updatedAll = all.filter(todo => todo.id !== todoId);
+    // setAll(updatedAll);
   };
 
-  const toggleTodo = todoId => {
+  const toggleTodo = id => {
     const updatedAll = all.map(todo =>
-      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
     setAll(updatedAll);
   };
 
-  const editTodo = (todoId, newTask, newCategory, newDate, newUserId) => {
-    const updatedAll = all.map(todo =>
-      todo.id === todoId
+  const editTodo = (id, value) => {
+    const updatedTodos = all.map(todo =>
+      todo.id === id
         ? {
             ...todo,
-            task: newTask,
-            category: newCategory,
-            date: newDate,
-            userId: newUserId
+            task: value,
+            id: id
           }
         : todo
     );
-    setAll(updatedAll);
+    setAll(updatedTodos);
+    console.log("all", all);
+    const body = { task: value };
+    axios
+      .put(`http://localhost:5000/todo/${userId}/seven/${id}`, body)
+      .then(response => response.data)
+      .then(data => {
+        console.log(data);
+        // window.location.reload();
+      });
   };
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:5000/todo/${userId}/seven`).then(
-  //     res => setAll(res.data),
-  //     res => console.log("get res", res.data)
-  //   );
-  // }, []);
-  // console.log(all);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/todo/${userId}/seven`).then(
+      res => setAll(res.data),
+      res => console.log("get res", res.data)
+    );
+  }, []);
 
   return (
     <div>
       <TodoBar auth={loggedIn} />
       <Grid container className={classes.container}>
-        <Typography className={classes.title}>
-          For the Next Seven days
-        </Typography>
+        <Typography className={classes.title}>Next seven days tasks</Typography>
         <Typography className={classes.quote}>
           The future starts today... not tomorrow
         </Typography>
       </Grid>
       <List>
         <div>
-          {all.map(todo => (
+          {all.map((todo, i) => (
             <Task
               todos={all}
               task={todo.task}
               date={todo.todo_at}
               category={todo.categories_id}
-              removeTodo={removeTodo}
+              removeTodo={() => removeTodo(todo.id)}
               toggleTodo={toggleTodo}
               editTodo={editTodo}
               id={todo.id}
