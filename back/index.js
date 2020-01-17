@@ -10,6 +10,7 @@ const path = require("path");
 require("./routes/auth/passport-setup");
 
 const app = express();
+// process.env.PORT : we telling to heroku we want our port number to be whatever heroku gives us and if it's not available like when we run it locally it will be 5000
 const PORT = process.env.PORT || 5000;
 const authRouter = require("./routes/auth/auth.js");
 const todoRouter = require("./routes/todo/todo");
@@ -38,22 +39,24 @@ app.get("/profile", passport.authenticate("jwt", { session: false }), function(
   res.send(req.user);
 });
 
-// Serve static assets if in production
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  // to load the index.html in front/build when npm run build in front
-  // we are setting the static folder here
-  app.use(express.static("front/build"));
-  // we want any request which not matching the middleware Route up there
-  // and should load the static index.html
-  // now we go to the package.json file and create the post build script
-  // to not run the build script if it is in production wo we'll set it to false
-  // we want to make sure it is in the front folder, so we use --prefixe
+// // Serve static assets if in production
+// if (process.env.NODE_ENV === "production") {
+//   // Set static folder
+//   // to load the index.html in front/build when npm run build in front
+//   // we are setting the static folder here
+//   app.use(express.static("../front/build"));
+//   // we want any request which not matching the middleware Route up there
+//   // and should load the static index.html
+//   // now we go to the package.json file and create the post build script
+//   // to not run the build script if it is in production wo we'll set it to false
+//   // we want to make sure it is in the front folder, so we use --prefixe
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
+//   });
+// }
+
+//  "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front && npm run build --prefix front"
 
 app.get("/", (req, res) => {
   res.json({
