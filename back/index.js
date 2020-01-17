@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const passport = require("passport");
 const cors = require("cors");
+// we import a path module, already in the nodejs, no need to install
+// this is to deal with the route path when we want to deploy on heroku
+const path = require("path");
 
 require("./routes/auth/passport-setup");
 
@@ -34,6 +37,23 @@ app.get("/profile", passport.authenticate("jwt", { session: false }), function(
 ) {
   res.send(req.user);
 });
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  // to load the index.html in front/build when npm run build in front
+  // we are setting the static folder here
+  app.use(express.static("front/build"));
+  // we want any request which not matching the middleware Route up there
+  // and should load the static index.html
+  // now we go to the package.json file and create the post build script
+  // to not run the build script if it is in production wo we'll set it to false
+  // we want to make sure it is in the front folder, so we use --prefixe
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
+  });
+}
 
 app.get("/", (req, res) => {
   res.json({
