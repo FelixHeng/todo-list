@@ -43,7 +43,6 @@ router.put("/:userId/all/:id", (req, res) => {
   const userId = req.params.userId;
   const taskId = req.params.id;
   const task = req.body.task;
-  console.log("REQUEST ===============", req.body);
   connection.query(
     `UPDATE todos SET task = '${task}' WHERE users_id=${userId} AND id = ${taskId}`,
     (err, results) => {
