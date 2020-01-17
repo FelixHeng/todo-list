@@ -105,7 +105,7 @@ export default function TemporaryDrawer() {
           <ListItemIcon>
             <Filter7OutlinedIcon style={{ color: "white" }} />
           </ListItemIcon>
-          <Typography className={classes.menulist}>Next Seven days</Typography>
+          <Typography className={classes.menulist}>Next 7 days</Typography>
         </MenuItem>
         <MenuItem component={Link} to={"/important"}>
           <ListItemIcon>

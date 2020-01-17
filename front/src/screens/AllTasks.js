@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from "react";
 import TodoBar from "../components/common/TodoBar";
-import TodoList from "../components/TodoList";
-import TodoItem from "../components/TodoItem";
 import Task from "../components/Task";
-import { Link } from "react-router-dom";
-import {
-  Button,
-  Grid,
-  Checkbox,
-  ListItemText,
-  List,
-  Box,
-  makeStyles,
-  Typography
-} from "@material-ui/core/";
+import moment from "moment";
+import fr from "moment/locale/fr";
+import { Grid, List, makeStyles, Typography } from "@material-ui/core/";
 import axios from "axios";
 
 function AllTasks() {
@@ -119,7 +109,9 @@ function AllTasks() {
             <Task
               todos={all}
               task={todo.task}
-              date={todo.todo_at}
+              date={moment(todo.todo_at)
+                .locale("fr")
+                .format("LLL")}
               category={todo.categories_id}
               removeTodo={() => removeTodo(todo.id)}
               toggleTodo={toggleTodo}

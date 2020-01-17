@@ -113,7 +113,6 @@ function Todo({
               borderRadius={10}
             >
               {date}
-              {userId}
             </Box>
             {/* <ListItemSecondaryAction> */}
             {/* </ListItemSecondaryAction> */}

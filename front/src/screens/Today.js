@@ -3,6 +3,8 @@ import TodoBar from "../components/common/TodoBar";
 import TodoList from "../components/TodoList";
 import TodoItem from "../components/TodoItem";
 import Task from "../components/Task";
+import moment from "moment";
+import fr from "moment/locale/fr";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -120,7 +122,9 @@ function Today() {
             <Task
               todos={all}
               task={todo.task}
-              date={todo.todo_at}
+              date={moment(todo.todo_at)
+                .locale("fr")
+                .format("LLL")}
               category={todo.categories_id}
               removeTodo={() => removeTodo(todo.id)}
               toggleTodo={toggleTodo}

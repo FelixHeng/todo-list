@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import useTodoState from "../hooks/useTodoState";
+import axios from "axios";
 
 import { Paper, Divider } from "@material-ui/core";
 import uuid from "uuid/v4";
@@ -31,6 +32,7 @@ function TodoApp() {
     // }
   ];
   const [todos, setTodos] = useState(initialTodos);
+  const [userId, setUserId] = useState(localStorage.getItem("id"));
   const addTodo = (newTodoText, newCategory, newUserId, newDate) => {
     setTodos([
       ...todos,
@@ -57,20 +59,27 @@ function TodoApp() {
     setTodos(updatedTodos);
   };
 
-  const editTodo = (todoId, newTask, newCategory, newDate, newUserId) => {
+  const editTodo = (id, value) => {
     const updatedTodos = todos.map(todo =>
-      todo.id === todoId
+      todo.id === id
         ? {
             ...todo,
-            task: newTask,
-            category: newCategory,
-            date: newDate,
-            userId: newUserId
+            task: value,
+            id: id
           }
         : todo
     );
     setTodos(updatedTodos);
+    const body = { task: value };
+    axios
+      .put(`http://localhost:5000/todo/${userId}/all/${id}`, body)
+      .then(response => response.data)
+      .then(data => {
+        console.log(data);
+        window.location.reload();
+      });
   };
+
   console.log("setTodossss", todos);
   return (
     <Paper>

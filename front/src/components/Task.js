@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useToggleState from "../hooks/useToggleState";
 import EditTodoForm from "../components/EditTodoForm";
+import DateFnsUtils from "@date-io/date-fns";
+import { format } from "date-fns";
 
 import {
   ListItem,
@@ -111,7 +113,6 @@ function Todo({
                   task={task}
                   category={category}
                   date={date}
-                  userId={userId}
                   toggleEditForm={toggle}
                 />
               ) : (
@@ -127,7 +128,6 @@ function Todo({
                 }}
               >
                 {date}
-                {userId}
               </Box>
               {/* <ListItemSecondaryAction> */}
               {/* </ListItemSecondaryAction> */}
