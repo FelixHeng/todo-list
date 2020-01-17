@@ -39,25 +39,6 @@ app.get("/profile", passport.authenticate("jwt", { session: false }), function(
   res.send(req.user);
 });
 
-// // Serve static assets if in production
-// if (process.env.NODE_ENV === "production") {
-//   // Set static folder
-//   // to load the index.html in front/build when npm run build in front
-//   // we are setting the static folder here
-//   app.use(express.static("../front/build"));
-//   // we want any request which not matching the middleware Route up there
-//   // and should load the static index.html
-//   // now we go to the package.json file and create the post build script
-//   // to not run the build script if it is in production wo we'll set it to false
-//   // we want to make sure it is in the front folder, so we use --prefixe
-
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
-//   });
-// }
-
-//  "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front && npm run build --prefix front"
-
 app.get("/", (req, res) => {
   res.json({
     message: "WELCOME MY FRIENDS"

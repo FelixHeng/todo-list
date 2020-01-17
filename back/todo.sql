@@ -1,3 +1,6 @@
+CREATE DATABASE todo; 
+USE todo;
+
 CREATE TABLE users
 (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -13,7 +16,7 @@ CREATE TABLE categories
     title VARCHAR(90) UNIQUE
 );
 
-CREATE TABLE todo
+CREATE TABLE todos
 (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     task VARCHAR(100) NOT NULL,
@@ -22,7 +25,7 @@ CREATE TABLE todo
     categories_id INT 
 );
 
-ALTER TABLE todo
+ALTER TABLE todos
 ADD CONSTRAINT fk_users_id
 FOREIGN KEY (users_id)
 REFERENCES users(id)
