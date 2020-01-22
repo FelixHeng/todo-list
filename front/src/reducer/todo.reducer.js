@@ -10,7 +10,8 @@ const reducer = (state, action) => {
           task: action.task,
           category: action.category,
           completed: false,
-          date: action.date
+          date: action.date,
+          userId: action.userId
         }
       ];
 
@@ -26,7 +27,7 @@ const reducer = (state, action) => {
         todo.id === action.id
           ? {
               ...todo,
-              task: action.value,
+              task: action.newTask,
               id: action.id
             }
           : todo

@@ -60,7 +60,7 @@ function TodoApp() {
   //     });
   // };
 
-  console.log("setTodossss", todos);
+  // console.log("setTodossss", todos);
   return (
     <Paper>
       <TodosProvider>
@@ -76,7 +76,7 @@ function TodoApp() {
       </TodosProvider>
     </Paper>
   );
-  setTodos();
+  // setTodos();
 }
 
 export default TodoApp;
