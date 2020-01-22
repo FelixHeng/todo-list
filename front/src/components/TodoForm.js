@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import useInputState from "../hooks/useInputState";
 import useToggleState from "../hooks/useToggleState";
 import Category from "./Category";
+import { DispatchContext } from "../context/todos.context";
+
 //npm install date-fns@next @date-io/date-fns
 import DateFnsUtils from "@date-io/date-fns";
 import { format } from "date-fns";
@@ -17,7 +19,8 @@ import { Button, ListItem, Grid } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import AddIcon from "@material-ui/icons/Add";
 
-function TodoForm({ addTodo }) {
+// function TodoForm({ addTodo }) {
+function TodoForm() {
   const [category, setCategory] = useState("Others");
   const [value, handleChange, reset] = useInputState("");
   const [isAdding, toggle] = useToggleState(false);
@@ -43,6 +46,13 @@ function TodoForm({ addTodo }) {
       userId: userId,
       date: dateSql
     };
+    dispatch({
+      type: "ADD",
+      task: body.value,
+      id: body.userId,
+      category: body.category,
+      date: body.date
+    });
 
     console.log("date sql ----", dateSql);
     console.log("body --------------------", body);
@@ -57,7 +67,8 @@ function TodoForm({ addTodo }) {
     );
     event.preventDefault();
     if (!value) return;
-    addTodo(value, category, userId, date);
+    // we use context
+    // addTodo(value, category, userId, date);
     reset();
     toggle();
   };
@@ -73,6 +84,9 @@ function TodoForm({ addTodo }) {
   const handleChangeCat = value => {
     setCategory(value);
   };
+
+  const dispatch = useContext(DispatchContext);
+
   return (
     <ListItem>
       {isAdding ? (

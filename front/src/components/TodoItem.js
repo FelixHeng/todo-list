@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import useToggleState from "../hooks/useToggleState";
 import EditTodoForm from "../components/EditTodoForm";
+import { DispatchContext } from "../context/todos.context";
 
 import {
   ListItem,
@@ -21,10 +22,11 @@ function Todo({
   category,
   date,
   userId,
-  completed,
-  removeTodo,
-  toggleTodo,
-  editTodo
+  completed
+  // ,
+  // removeTodo,
+  // toggleTodo,
+  // editTodo
 }) {
   const [isEditing, toggle] = useToggleState(false);
   const workColors = "#3498DB";
@@ -64,11 +66,14 @@ function Todo({
   // console.log("cateeee", category);
   // console.log("daaate", date);
   console.log("iddd item", id);
+
+  const dispatch = useContext(DispatchContext);
+
   return (
     <ListItem>
       {isEditing ? (
         <EditTodoForm
-          editTodo={editTodo}
+          // editTodo={editTodo}
           id={id}
           task={task}
           category={category}
@@ -88,7 +93,8 @@ function Todo({
                 <Checkbox
                   tabIndex={-1}
                   checked={completed}
-                  onClick={() => toggleTodo(id)}
+                  onClick={() => dispatch({ type: "TOGGLE", id: id })}
+                  // onClick={() => toggleTodo(id)}
                 />
                 <Button className={classes.category}>{category}</Button>
               </Box>
@@ -96,7 +102,11 @@ function Todo({
                 <IconButton aria-label="Edit" onClick={toggle}>
                   <EditIcon />
                 </IconButton>
-                <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
+                {/* <IconButton aria-label="Delete" onClick={() => removeTodo(id)}> */}
+                <IconButton
+                  aria-label="Delete"
+                  onClick={() => dispatch({ type: "REMOVE", id: id })}
+                >
                   <DeleteIcon />
                 </IconButton>
               </Box>
