@@ -51,7 +51,7 @@ function TodoForm() {
       task: body.value,
       id: body.userId,
       category: body.category,
-      date: body.date
+      date: date
     });
 
     console.log("date sql ----", dateSql);

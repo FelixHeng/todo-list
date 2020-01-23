@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import TodoBar from "../components/common/TodoBar";
 import Task from "../components/Task";
 import moment from "moment";
 import fr from "moment/locale/fr";
 import { Grid, List, makeStyles, Typography } from "@material-ui/core/";
 import axios from "axios";
+import { TodosContext } from "../context/todos.context";
+import { TodosProvider } from "../context/todos.context";
 
 function AllTasks() {
   const [all, setAll] = useState([]);
@@ -47,45 +49,45 @@ function AllTasks() {
 
   const classes = useStyles();
 
-  const removeTodo = id => {
-    axios
-      .delete(`http://localhost:5000/todo/${userId}/all/${id}`)
-      .then(response => response.data)
-      .then(() => {
-        window.location.reload();
-      });
-    // const updatedAll = all.filter(todo => todo.id !== todoId);
-    // setAll(updatedAll);
-  };
+  // const removeTodo = id => {
+  //   axios
+  //     .delete(`http://localhost:5000/todo/${userId}/all/${id}`)
+  //     .then(response => response.data)
+  //     .then(() => {
+  //       window.location.reload();
+  //     });
+  //   // const updatedAll = all.filter(todo => todo.id !== todoId);
+  //   // setAll(updatedAll);
+  // };
 
-  const toggleTodo = id => {
-    const updatedAll = all.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
-    setAll(updatedAll);
-  };
+  // const toggleTodo = id => {
+  //   const updatedAll = all.map(todo =>
+  //     todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  //   );
+  //   setAll(updatedAll);
+  // };
 
-  const editTodo = (id, value) => {
-    const updatedTodos = all.map(todo =>
-      todo.id === id
-        ? {
-            ...todo,
-            task: value,
-            id: id
-          }
-        : todo
-    );
-    setAll(updatedTodos);
-    console.log("all", all);
-    const body = { task: value };
-    axios
-      .put(`http://localhost:5000/todo/${userId}/all/${id}`, body)
-      .then(response => response.data)
-      .then(data => {
-        console.log(data);
-        window.location.reload();
-      });
-  };
+  // const editTodo = (id, value) => {
+  //   const updatedTodos = all.map(todo =>
+  //     todo.id === id
+  //       ? {
+  //           ...todo,
+  //           task: value,
+  //           id: id
+  //         }
+  //       : todo
+  //   );
+  //   setAll(updatedTodos);
+  //   console.log("all", all);
+  //   const body = { task: value };
+  //   axios
+  //     .put(`http://localhost:5000/todo/${userId}/all/${id}`, body)
+  //     .then(response => response.data)
+  //     .then(data => {
+  //       console.log(data);
+  //       window.location.reload();
+  //     });
+  // };
 
   useEffect(() => {
     axios.get(`http://localhost:5000/todo/${userId}/all`).then(
@@ -94,6 +96,7 @@ function AllTasks() {
     );
   }, []);
 
+  const todos = useContext(TodosContext);
   return (
     <div>
       <TodoBar auth={loggedIn} />
@@ -104,30 +107,35 @@ function AllTasks() {
         </Typography>
       </Grid>
       <List>
-        <div>
-          {all.map((todo, i) => (
-            <Task
-              todos={all}
-              task={todo.task}
-              date={moment(todo.todo_at)
-                .locale("fr")
-                .format("LLL")}
-              category={todo.categories_id}
-              removeTodo={() => removeTodo(todo.id)}
-              toggleTodo={toggleTodo}
-              editTodo={editTodo}
-              id={todo.id}
-            />
-          ))}
-
-          <Grid
-            item
-            xs={10}
-            md={8}
-            lg={5}
-            style={{ marginTop: "2rem", alignContent: "center" }}
-          ></Grid>
-        </div>
+        <TodosProvider>
+          <div>
+            {todos.map((todo, i) => (
+              <React.Fragment key={i}>
+                <Task
+                  {...todo}
+                  key={todo.id}
+                  // todos={all}
+                  // task={todo.task}
+                  // date={moment(todo.todo_at)
+                  //   .locale("fr")
+                  //   .format("LLL")}
+                  // category={todo.categories_id}
+                  // removeTodo={() => removeTodo(todo.id)}
+                  // toggleTodo={toggleTodo}
+                  // editTodo={editTodo}
+                  // id={todo.id}
+                />
+              </React.Fragment>
+            ))}
+            <Grid
+              item
+              xs={10}
+              md={8}
+              lg={5}
+              style={{ marginTop: "2rem", alignContent: "center" }}
+            ></Grid>
+          </div>
+        </TodosProvider>
       </List>
     </div>
   );

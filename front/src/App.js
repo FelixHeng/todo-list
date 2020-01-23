@@ -16,13 +16,22 @@ import Photos from "./screens/Photos";
 import Places from "./screens/Places";
 
 import "./App.css";
+import { TodosProvider } from "./context/todos.context";
 
 function App() {
   return (
     <BrowserRouter>
+      {/* <TodosProvider> */}
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/all" component={AllTasks} />
+        <Route
+          path="/all"
+          render={props => (
+            <TodosProvider>
+              <AllTasks {...props} />{" "}
+            </TodosProvider>
+          )}
+        />
         <Route path="/today" component={Today} />
         <Route path="/tomorrow" component={Tomorrow} />
         <Route path="/important" component={Important} />
@@ -35,6 +44,7 @@ function App() {
         <Route path="/photos" component={Photos} />
         <Route path="/places" component={Places} />
       </Switch>
+      {/* </TodosProvider> */}
     </BrowserRouter>
   );
 }

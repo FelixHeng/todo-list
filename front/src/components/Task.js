@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import useToggleState from "../hooks/useToggleState";
 import EditTodoForm from "../components/EditTodoForm";
 import DateFnsUtils from "@date-io/date-fns";
 import { format } from "date-fns";
+import { DispatchContext } from "../context/todos.context";
 
 import {
   ListItem,
@@ -24,10 +25,12 @@ function Todo({
   date,
   userId,
   completed,
-  removeTodo,
-  editTodo,
+  // removeTodo,
+  // editTodo,
   value
 }) {
+  const dispatch = useContext(DispatchContext);
+
   const [isEditing, toggle] = useToggleState(false);
   const [done, setDone] = useState(false);
   const workColors = "#3498DB";
@@ -99,7 +102,8 @@ function Todo({
                   </IconButton>
                   <IconButton
                     aria-label="Delete"
-                    onClick={() => removeTodo(id)}
+                    // onClick={() => removeTodo(id)}
+                    onClick={() => dispatch({ type: "REMOVE", id: id })}
                   >
                     <DeleteIcon />
                   </IconButton>
@@ -108,7 +112,7 @@ function Todo({
 
               {isEditing ? (
                 <EditTodoForm
-                  editTodo={editTodo}
+                  // editTodo={editTodo}
                   id={id}
                   task={task}
                   category={category}
