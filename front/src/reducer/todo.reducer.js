@@ -33,33 +33,58 @@ const reducer = (state, action) => {
       return state.map(todo =>
         todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       );
+
     case "EDIT":
-      return (
-        //      const editTodo = (id, value) => {
-        //     const updatedTodos = all.map(todo =>
-        //       todo.id === id
-        //     ? {
-        //         ...todo,
-        //         task: value,
-        //         id: id
-        //       }
-        //     : todo
-        // );
-        // setAll(updatedTodos);
-        // console.log("all", all);
-        // const body = { task: value };
-        axios
-          .put(
-            `http://localhost:5000/todo/${action.userId}/all/${action.id}`,
-            action.body
-          )
-          .then(response => response.data)
-          .then(data => {
-            console.log(data);
-            window.location.reload();
-          })
-        // };
-      );
+      return [
+        ...state,
+        {
+          id: uuid(),
+          // id: action.id,
+          task: action.newTask,
+          category: action.category,
+          completed: false,
+          date: action.date,
+          userId: action.userId
+        }
+      ];
+    // return (
+    //      const editTodo = (id, value) => {
+    //     const updatedTodos = all.map(todo =>
+    //       todo.id === id
+    //     ? {
+    //         ...todo,
+    //         task: value,
+    //         id: id
+    //       }
+    //     : todo
+    // );
+    // setAll(updatedTodos);
+    // console.log("all", all);
+    // const body = { task: value };
+    // state.map(todo =>
+    //   todo.id === action.id
+    //     ? {
+    //         ...todo,
+    //         task: action.newTask,
+    //         id: action.id,
+    //         category: action.category,
+    //         date: action.date,
+    //         userId: action.userId
+    //       }
+    //     : todo
+    // ),
+    // axios
+    //   .put(
+    //     `http://localhost:5000/todo/${action.userId}/all/${action.id}`
+    //     // action.body
+    //   )
+    //   .then(response => response.data)
+    //   .then(data => {
+    //     console.log(data);
+    //     window.location.reload();
+    //   })
+    // };
+    // );
   }
 };
 

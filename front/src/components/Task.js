@@ -29,8 +29,6 @@ function Todo({
   // editTodo,
   value
 }) {
-  const dispatch = useContext(DispatchContext);
-
   const [isEditing, toggle] = useToggleState(false);
   const [done, setDone] = useState(false);
   const workColors = "#3498DB";
@@ -67,6 +65,9 @@ function Todo({
   });
   const classes = useStyles();
   console.log("iddddd", id);
+
+  const dispatch = useContext(DispatchContext);
+
   return (
     <ListItem>
       <Grid container justify="center">
@@ -103,7 +104,9 @@ function Todo({
                   <IconButton
                     aria-label="Delete"
                     // onClick={() => removeTodo(id)}
-                    onClick={() => dispatch({ type: "REMOVE", id: id })}
+                    onClick={() =>
+                      dispatch({ type: "REMOVE", id: id, userId: userId })
+                    }
                   >
                     <DeleteIcon />
                   </IconButton>
@@ -118,6 +121,7 @@ function Todo({
                   category={category}
                   date={date}
                   toggleEditForm={toggle}
+                  userId={userId}
                 />
               ) : (
                 <div style={{ marginLeft: "0.7rem", width: "80%" }}>{task}</div>

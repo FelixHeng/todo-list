@@ -1,28 +1,30 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Routes from "./Routes/index";
+// import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Home from "./screens/Home";
-import AllTasks from "./screens/AllTasks";
-import Today from "./screens/Today";
-import Tomorrow from "./screens/Tomorrow";
-import Important from "./screens/Important";
-import SevenDays from "./screens/SevenDays";
-import Someday from "./screens/Someday";
-import Login from "./screens/Login";
-import Signup from "./screens/Signup";
-import Profile from "./screens/Profile";
-import Docs from "./screens/Docs";
-import Photos from "./screens/Photos";
-import Places from "./screens/Places";
+// import Home from "./screens/Home";
+// import AllTasks from "./screens/AllTasks";
+// import Today from "./screens/Today";
+// import Tomorrow from "./screens/Tomorrow";
+// import Important from "./screens/Important";
+// import SevenDays from "./screens/SevenDays";
+// import Someday from "./screens/Someday";
+// import Login from "./screens/Login";
+// import Signup from "./screens/Signup";
+// import Profile from "./screens/Profile";
+// import Docs from "./screens/Docs";
+// import Photos from "./screens/Photos";
+// import Places from "./screens/Places";
+// import "./App.css";
 
-import "./App.css";
 import { TodosProvider } from "./context/todos.context";
 
 function App() {
   return (
-    <BrowserRouter>
-      {/* <TodosProvider> */}
-      <Switch>
+    // <BrowserRouter>
+    <TodosProvider>
+      <Routes />
+      {/* <Switch>
         <Route exact path="/" component={Home} />
         <Route
           path="/all"
@@ -43,10 +45,12 @@ function App() {
         <Route path="/docs" component={Docs} />
         <Route path="/photos" component={Photos} />
         <Route path="/places" component={Places} />
-      </Switch>
-      {/* </TodosProvider> */}
-    </BrowserRouter>
+      </Switch> */}
+    </TodosProvider>
   );
+  {
+    /* </BrowserRouter> */
+  }
 }
 
 export default App;

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import TodoBar from "../components/common/TodoBar";
 import Task from "../components/Task";
 import moment from "moment";
@@ -9,6 +9,7 @@ import { TodosContext } from "../context/todos.context";
 import { TodosProvider } from "../context/todos.context";
 
 function AllTasks() {
+  const [loading, setLoading] = useState(true);
   const [all, setAll] = useState([]);
   const [userId, setUserId] = useState(localStorage.getItem("id"));
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
@@ -89,14 +90,33 @@ function AllTasks() {
   //     });
   // };
 
-  useEffect(() => {
-    axios.get(`http://localhost:5000/todo/${userId}/all`).then(
-      res => setAll(res.data),
-      res => console.log("get res", res.data)
-    );
-  }, []);
+  const getTodos = useCallback(async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:5000/todo/${userId}/all`
+      );
+      setAll(data);
+      console.log("allllll", all);
+      console.log("dataaaaa", data);
+      console.log("userIdddd", userId);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [setAll]);
 
-  const todos = useContext(TodosContext);
+  useEffect(() => {
+    getTodos();
+  }, [getTodos]);
+
+  // useEffect(() => {
+  //   axios.get(`http://localhost:5000/todo/${userId}/all`).then(
+  //     res => setAll(res.data),
+  //     res => console.log("get res", res.data)
+  //   );
+  // }, []);
+
+  // const todos = useContext(TodosContext);
   return (
     <div>
       <TodoBar auth={loggedIn} />
@@ -107,35 +127,43 @@ function AllTasks() {
         </Typography>
       </Grid>
       <List>
-        <TodosProvider>
-          <div>
-            {todos.map((todo, i) => (
-              <React.Fragment key={i}>
-                <Task
-                  {...todo}
-                  key={todo.id}
-                  // todos={all}
-                  // task={todo.task}
-                  // date={moment(todo.todo_at)
-                  //   .locale("fr")
-                  //   .format("LLL")}
-                  // category={todo.categories_id}
-                  // removeTodo={() => removeTodo(todo.id)}
-                  // toggleTodo={toggleTodo}
-                  // editTodo={editTodo}
-                  // id={todo.id}
-                />
-              </React.Fragment>
-            ))}
-            <Grid
-              item
-              xs={10}
-              md={8}
-              lg={5}
-              style={{ marginTop: "2rem", alignContent: "center" }}
-            ></Grid>
-          </div>
-        </TodosProvider>
+        {/* <TodosProvider> */}
+        <div>
+          {loading ? (
+            <h2>Loading ...</h2>
+          ) : (
+            <>
+              {all.map((todo, i) => (
+                <React.Fragment key={i}>
+                  <Task
+                    {...todo}
+                    key={todo.id}
+                    todos={all}
+                    task={todo.task}
+                    date={moment(todo.todo_at)
+                      .locale("fr")
+                      .format("LLL")}
+                    category={todo.categories_id}
+                    userId={todo.users_id}
+                    // removeTodo={() => removeTodo(todo.id)}
+
+                    // toggleTodo={toggleTodo}
+                    // editTodo={editTodo}
+                    id={todo.id}
+                  />
+                </React.Fragment>
+              ))}
+            </>
+          )}
+          <Grid
+            item
+            xs={10}
+            md={8}
+            lg={5}
+            style={{ marginTop: "2rem", alignContent: "center" }}
+          ></Grid>
+        </div>
+        {/* </TodosProvider> */}
       </List>
     </div>
   );
